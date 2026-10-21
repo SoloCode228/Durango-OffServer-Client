@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "updated": "2026-10-21T09:45:00+07:00",
+  "updated": "2026-10-22T02:16:47+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.2.5",
-    "tag": "v3.2.5",
+    "version": "3.3.0",
+    "tag": "v3.3.0",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
@@ -24,6 +24,28 @@
     }
   },
   "history": [
+    {
+      "package": "com.durango.offserver",
+      "version": "3.2.5",
+      "tag": "v3.2.5",
+      "min_sdk": 26,
+      "builds": {
+        "arm64-v8a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.2.5/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 828985121,
+          "sha256": "948ad3a24f028ffc1e47b164c9e8156167db2c925129ac0c2b71992c7b786293",
+          "version_code": 0
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.2.5/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 828985121,
+          "sha256": "948ad3a24f028ffc1e47b164c9e8156167db2c925129ac0c2b71992c7b786293",
+          "version_code": 0
+        }
+      }
+    },
     {
       "version": "3.2.4",
       "abi": "arm64-v8a",
