@@ -2,11 +2,11 @@
   "servers": [
     {
       "name": "[5BD68A][OBT][-] [F5C518]Dorangu:Renewal[-]",
-      "gateway": "http://168.222.21.53:8290"
+      "gateway": "http://58.8.81.105:8290"
     },
     {
       "name": "[5BD68A][OBT][-] [B8A4FF]Supporter[-]",
-      "gateway": "http://168.222.21.53:8292"
+      "gateway": "http://58.8.81.105:8292"
     }
   ]
 }
