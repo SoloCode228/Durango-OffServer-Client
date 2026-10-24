@@ -1,29 +1,51 @@
 {
   "schema": 1,
-  "updated": "2026-10-23T06:20:57+07:00",
+  "updated": "2026-10-24T19:08:15+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.1",
-    "tag": "v3.3.1",
+    "version": "3.3.2",
+    "tag": "v3.3.2",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.1/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.2/DurangoReborn.apk",
         "mirrors": [],
-        "size": 829660353,
-        "sha256": "abf5fc7275bdd881b4598301d4b0eff2a546b0cd21f2a32e196912e8623210e7",
-        "version_code": 0
+        "size": 829895449,
+        "sha256": "8a1a4bf78e43c9a751571351dd4e0c66d36e6415b0c9e2528296136313d3b97d",
+        "version_code": 332
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.1/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.2/DurangoReborn.apk",
         "mirrors": [],
-        "size": 829660353,
-        "sha256": "abf5fc7275bdd881b4598301d4b0eff2a546b0cd21f2a32e196912e8623210e7",
-        "version_code": 0
+        "size": 829895449,
+        "sha256": "8a1a4bf78e43c9a751571351dd4e0c66d36e6415b0c9e2528296136313d3b97d",
+        "version_code": 332
       }
     }
   },
   "history": [
+    {
+      "package": "com.durango.offserver",
+      "version": "3.3.1",
+      "tag": "v3.3.1",
+      "min_sdk": 26,
+      "builds": {
+        "arm64-v8a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.1/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 829660353,
+          "sha256": "abf5fc7275bdd881b4598301d4b0eff2a546b0cd21f2a32e196912e8623210e7",
+          "version_code": 0
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.1/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 829660353,
+          "sha256": "abf5fc7275bdd881b4598301d4b0eff2a546b0cd21f2a32e196912e8623210e7",
+          "version_code": 0
+        }
+      }
+    },
     {
       "package": "com.durango.offserver",
       "version": "3.3.0",
