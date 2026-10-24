@@ -7,3 +7,8 @@
 .material-thumbs .item-method{font-size:8px;color:#a3a198}.material-thumbs .item-method.fixed{color:#f2cc66}.material-thumbs a{width:80px}
 
 @media(max-width:760px){.atlas-hero{grid-template-columns:1fr;min-height:0}.atlas-hero>div:first-child{padding:22px 18px}.atlas-hero-art{position:absolute;right:0;top:0;bottom:0;width:100px;opacity:.35}.atlas-hero h1{font-size:26px}.atlas-hero p{max-width:275px}.atlas-hero-art img{height:175px}}
+
+/* The property name itself carries its client-defined rarity color. */
+.tag-card.green h2,.tag-detail-top.green h1,.visual-card.property-green h3,.buff-name.green{color:#8dd294}
+.tag-card.yellow h2,.tag-detail-top.yellow h1,.visual-card.property-yellow h3,.buff-name.yellow{color:#f2cc66}
+.tag-card.gray h2,.tag-detail-top.gray h1,.visual-card.property-gray h3,.buff-name.gray{color:#aaa69e}
