@@ -8,3 +8,6 @@
 .food-result-rules{border:1px solid #74613a;background:#332f23;padding:14px;margin:15px 0;display:flex;flex-direction:column;gap:10px;font-size:11px;line-height:1.9}.food-result-rules>b{color:#f0c95a}.food-result-rules .tag-badge,.food-slot-rule .tag-badge{font-size:10px;padding:3px 7px}
 
 .food-hero>div{min-width:0}.food-hero-plates,.food-hero .atlas-legend{flex-wrap:wrap}.food-hero .atlas-legend{gap:12px}.food-hero h1{overflow-wrap:anywhere}.food-toolbar select{min-width:0}@media(max-width:360px){.food-hero-plates{gap:14px}.food-hero-plates a{width:64px}.food-hero{padding:20px 16px}.food-hero h1{font-size:25px}.food-card h2{overflow-wrap:anywhere}}
+
+@media(max-width:760px){.detail-nav{flex-wrap:wrap;white-space:normal;overflow-x:visible;gap:8px 16px}.detail-nav a{padding:10px 0}}
+.food-preparations{margin:15px 0;padding:12px;border:1px solid #74613a;border-radius:4px;background:#332f23}.food-preparations>small{font-size:10px;color:#f0c95a}.food-preparations>div{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.food-preparations a{display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;width:90px;font-size:10px;line-height:1.7;color:#f0c95a}.food-preparations img{width:35px;height:35px;object-fit:contain}
