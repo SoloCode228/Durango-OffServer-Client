@@ -1,1 +1,378 @@
-<!doctype html><html lang="th"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Durango Field Guide</title><meta http-equiv="refresh" content="0;url=../?v=obt-live-20261024#/guides/crafting"><script>location.replace("../?v=obt-live-20261024#/guides/crafting"+(location.hash.length>1?'?section='+encodeURIComponent(decodeURIComponent(location.hash.slice(1))):''))</script><a href="../?v=obt-live-20261024#/guides/crafting">เปิดคู่มือฉบับใหม่</a></html>
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>การคราฟต์ · คู่มือ Durango OffServer</title>
+<meta name="description" content="สร้างเครื่องมือ อาวุธ เสื้อผ้า และแปรรูปวัตถุดิบ — สูตร โต๊ะทำงาน โอกาสสำเร็จและล้มเหลว เลเวลผลงาน โอกาสแปรรูป และการขัดโลหะด้วยเปลือกหอย">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#1f1e1d">
+<link rel="canonical" href="https://solocode228.github.io/Durango-OffServer-Client/th/crafting.html"><link rel="alternate" hreflang="th" href="https://solocode228.github.io/Durango-OffServer-Client/th/crafting.html"><link rel="alternate" hreflang="en" href="https://solocode228.github.io/Durango-OffServer-Client/en/crafting.html">
+<link rel="icon" href="../images/atlas/icon_atlas/act_DepartTutorial.webp">
+<link rel="stylesheet" href="../assets/wiki.css?v=mvmlz2tn">
+<script>try{var t=localStorage.getItem("wiki-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body data-root="../" data-lang="th" data-slug="crafting">
+<a class="skip" href="#content">ข้ามไปเนื้อหา</a>
+<header class="topbar">
+<button class="icon-btn menu-btn" type="button" aria-controls="sidebar" aria-expanded="false" title="เมนู"><span aria-hidden="true">☰</span><span class="sr">เมนู</span></button>
+<a class="brand" href="../th/index.html"><img src="../images/atlas/icon_atlas/act_DepartTutorial.webp" alt="" width="48" height="52" class="brand-icon glyph" loading="lazy"><span class="brand-long">คู่มือ Durango OffServer</span><span class="brand-short">Durango Wiki</span></a>
+<div class="search" role="search">
+<input type="search" id="search-input" placeholder="ค้นหาในคู่มือ…" aria-label="ค้นหาในคู่มือ…" autocomplete="off" data-none="ไม่พบผลลัพธ์">
+<ul id="search-results" class="search-results" hidden></ul>
+</div>
+<nav class="langs" aria-label="ภาษา"><span class="lang current" aria-current="true" lang="th">ไทย</span><a class="lang" href="../en/crafting.html" hreflang="en" lang="en" data-lang="en">English</a></nav>
+<button class="icon-btn theme-btn" type="button" title="สลับธีมมืด/สว่าง"><span aria-hidden="true">◐</span><span class="sr">สลับธีมมืด/สว่าง</span></button>
+</header>
+<div class="layout">
+<nav class="sidebar" id="sidebar" aria-label="เมนู">
+<a class="nav-home"href="../th/index.html">หน้าแรก</a>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_DepartTutorial.webp" alt="" width="48" height="52" class="nav-icon glyph" loading="lazy">เริ่มต้น</p><ul>
+<li><a href="../th/install.html">ติดตั้งและอัปเดตเกม <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/getting-started.html">เริ่มต้นเล่น <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/guide.html">ไกด์เล่นตั้งแต่ต้นจนจบ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/account.html">บัญชีและการเข้าเกม <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/roadmap.html">แผนงานถึงเปิดจริง <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_drinkwater.webp" alt="" width="63" height="43" class="nav-icon glyph" loading="lazy">เอาตัวรอด</p><ul>
+<li><a href="../th/survival.html">การเอาตัวรอด <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/status-effects.html">บัพและสถานะผิดปกติ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/weather.html">สภาพอากาศและค่าดัชนีแปรผัน <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/death.html">การตายและการคืนชีพ <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_Craft.webp" alt="" width="55" height="57" class="nav-icon glyph" loading="lazy">เก็บของและคราฟต์</p><ul>
+<li><a href="../th/gathering.html">การเก็บของ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/crafting.html" class="current" aria-current="page">การคราฟต์ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/tags.html">คุณสมบัติของไอเทม <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/farming.html">การเพาะปลูก <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/harvestables.html">กับดักและบ่อน้ำ <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/rgb_atlas/bag_back.webp" alt="" width="64" height="64" class="nav-icon" loading="lazy">ไอเทม</p><ul>
+<li><a href="../th/items.html">ไอเทม <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/equipment.html">อุปกรณ์และการซ่อม <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/weapons-tools.html">อาวุธและเครื่องมือ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/clothing.html">เสื้อผ้าและเครื่องประดับ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/materials.html">วัตถุดิบ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/consumables.html">อาหาร เครื่องดื่ม และยา <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/cook_skewer.webp" alt="" width="58" height="57" class="nav-icon glyph" loading="lazy">อาหาร</p><ul>
+<li><a href="../th/eating.html">การกินและดื่ม <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/cooking.html">การทำอาหาร <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/preserving.html">การถนอมอาหารและอาหารเน่า <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_estate.webp" alt="" width="50" height="42" class="nav-icon glyph" loading="lazy">ก่อสร้างและที่ดิน</p><ul>
+<li><a href="../th/building.html">การก่อสร้าง <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/land.html">อาณาเขต <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/decay.html">การผุพังและซ่อม <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/storage.html">ที่เก็บของ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_Attack.webp" alt="" width="59" height="58" class="nav-icon glyph" loading="lazy">สัตว์และการต่อสู้</p><ul>
+<li><a href="../th/combat.html">การต่อสู้ <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/pvp.html">เกาะไร้กฎ (PvP) <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/animals.html">สัตว์ป่า <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_domesticate_1.webp" alt="" width="64" height="59" class="nav-icon glyph" loading="lazy">จับและเลี้ยงสัตว์</p><ul>
+<li><a href="../th/taming.html">การจับสัตว์ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/pets.html">สัตว์เลี้ยง <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/skill_cooking_1.webp" alt="" width="58" height="49" class="nav-icon glyph" loading="lazy">การเติบโต</p><ul>
+<li><a href="../th/stats.html">ค่าสถานะตัวละคร <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/skills.html">สกิลและอาชีพ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/skill-list.html">รายการสกิล <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+<li><a href="../th/titles.html">ฉายา <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/organizations.html">องค์กร <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/quests.html">เควสและรางวัล <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_InviteToClan.webp" alt="" width="52" height="42" class="nav-icon glyph" loading="lazy">สังคมและเศรษฐกิจ</p><ul>
+<li><a href="../th/clan.html">แคลน <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/market.html">ตลาดและร้านค้า <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/transport.html">ขนส่งและพาหนะ <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/mail.html">จดหมาย <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+</ul></div>
+<div class="nav-cat"><p class="nav-cat-title"><img src="../images/atlas/icon_atlas/act_fasttravel.webp" alt="" width="56" height="44" class="nav-icon glyph" loading="lazy">โลกและการเดินทาง</p><ul>
+<li><a href="../th/islands.html">เกาะและการเดินทาง <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/warp.html">วาร์ปและรอยแยก <span class="dot dot-partial" title="ใช้ได้ — มีในเซิร์ฟแล้ว · บางหัวข้อในหน้านี้ยังไม่เสร็จ"><span aria-hidden="true">✓⏳</span><span class="sr">ใช้ได้ · บางหัวข้อในหน้านี้ยังไม่เสร็จ</span></span></a></li>
+<li><a href="../th/map.html">แผนที่และการสำรวจ <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></a></li>
+</ul></div>
+</nav>
+
+<main id="content" class="content">
+<article class="page">
+<p class="crumbs"><a href="index.html">หน้าแรก</a> › เก็บของและคราฟต์</p>
+<h1><img src="../images/atlas/icon_atlas/act_Craft.webp" alt="" width="55" height="57" class="title-icon glyph" loading="lazy">การคราฟต์ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h1>
+<p class="summary">สร้างเครื่องมือ อาวุธ เสื้อผ้า และแปรรูปวัตถุดิบ — สูตร โต๊ะทำงาน โอกาสสำเร็จและล้มเหลว เลเวลผลงาน โอกาสแปรรูป และการขัดโลหะด้วยเปลือกหอย</p>
+
+<p>ของที่เก็บมาได้ถูกนำไปสร้างเป็นเครื่องมือ อาวุธ เสื้อผ้า อาหาร และชิ้นส่วนสิ่งปลูกสร้าง · วัตถุดิบหลายอย่างต้อง <strong>แปรรูป</strong> ก่อน (ตัดแต่ง หลอม ฟอก ตากแห้ง …) ถึงจะใช้ในสูตรขั้นต่อไปได้ · เลเวลและคุณสมบัติของวัตถุดิบส่งผลถึงของที่ได้</p>
+<p><figure><img src="../images/tex/Assets__Texture2D__weaponcrafting_3-w560.webp" alt="ช่องวัตถุดิบของสูตร" width="560" height="280" loading="lazy" class="img-figure"><figcaption>ช่องวัตถุดิบของสูตร</figcaption></figure></p>
+<h2 id="ทำอะไรได้บ้าง"><a class="anchor" href="#ทำอะไรได้บ้าง" aria-hidden="true">#</a>ทำอะไรได้บ้าง</h2>
+<ul>
+<li><strong>สร้าง</strong> เครื่องมือ อาวุธ เสื้อผ้า กระเป๋า ยา ฯลฯ จากเมนูสร้าง</li>
+<li><strong>แปรรูป</strong> วัตถุดิบ — ของชิ้นเดิมถูกปรับ (ได้ป้ายบอกว่าผ่านการแปรรูปแล้ว) เพื่อเข้าสูตรขั้นต่อไป</li>
+<li><strong>ฝากทำที่โต๊ะทำงาน</strong> — วางงานไว้บนโต๊ะแล้วไปทำอย่างอื่น (การสร้างของแบบไม่ต้องมีผู้ดูแล)</li>
+<li><strong>ทำอาหาร</strong> — ดู <a href="cooking.html">การทำอาหาร</a> และ <a href="preserving.html">การถนอมอาหาร</a></li>
+<li><strong>สิ่งปลูกสร้าง</strong> ใช้แผนผัง — ดู <a href="building.html">การก่อสร้าง</a></li>
+</ul>
+<h2 id="วิธีคราฟต์"><a class="anchor" href="#วิธีคราฟต์" aria-hidden="true">#</a>วิธีคราฟต์ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<ol>
+<li>เปิดเมนู <strong>สร้าง</strong> แล้วเลือก <strong>สูตร</strong> ที่ต้องการ</li>
+<li>ใส่ <strong>วัตถุดิบ</strong> ลงแต่ละช่อง — ช่องจะบอกว่าต้องการของที่มีคุณสมบัติ/แท็กอะไรและระดับเท่าไร ของที่ไม่เข้าเงื่อนไขเลือกไม่ได้</li>
+<li>บางสูตรต้องยืนใกล้ <strong>โต๊ะทำงาน</strong> ที่ตรงชนิด หรือถือ <strong>เครื่องมือ</strong> ที่กำหนด</li>
+<li>รอหลอดเวลาจนเต็ม แล้วรับของ</li>
+</ol>
+<ul>
+<li>สูตรปลดล็อกได้จากการเรียน <a href="skills.html">สกิล</a> · <a href="#ตำราเรียนสูตร">ตำราเรียนสูตร</a> และบางสูตร/แผนผังปลดเองเมื่อ <strong>ทักษะในการสร้าง</strong> (ค่าคราฟต์) ของหมวดนั้นสูงถึงเกณฑ์ (บันไดความชำนาญ)</li>
+<li>ค่าคราฟต์ไม่บล็อกสูตร — ลองทำได้เสมอ แต่เป็นตัวกำหนด <strong>โอกาสสำเร็จ</strong>: หน้าต่าง <strong>ผลลัพธ์ที่คาด</strong> แสดง <strong>ระดับความยาก</strong> ของสูตร อัตราความสำเร็จ และอัตราความสำเร็จแบบไร้ที่ติก่อนกดสร้าง — เป็นตัวเลขเดียวกับที่เซิร์ฟเวอร์ใช้ทอยจริง</li>
+</ul>
+<h2 id="ตำราเรียนสูตร"><a class="anchor" href="#ตำราเรียนสูตร" aria-hidden="true">#</a>ตำราเรียนสูตร <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p><img src="../images/atlas/icon_atlas/gain_recipes_book.webp" alt="" width="63" height="58" loading="lazy" class="img-inline glyph"> <img src="../images/atlas/icon_atlas/recipe_book_cook.webp" alt="" width="64" height="58" loading="lazy" class="img-inline glyph"> <img src="../images/atlas/icon_atlas/recipe_book_constructing.webp" alt="" width="63" height="58" loading="lazy" class="img-inline glyph"> ตำรา/แบบ/พิมพ์เขียวบางเล่ม (ได้จากแพ็ก อีเวนต์ หรือของเก่า) กดใช้จากกระเป๋าแล้ว <strong>ได้สูตรหรือแผนผังถาวร</strong> โดยไม่ต้องเรียนสกิล</p>
+<ul>
+<li>ใช้แล้วตำราหาย 1 เล่ม · สูตรโผล่ในเมนูสร้าง / แผนผังโผล่ในเมนูก่อสร้างทันที และคราฟต์ได้จริง</li>
+<li>ถ้ารู้สูตรนั้นอยู่แล้ว (จากสกิลหรือเล่มก่อน) — ขึ้นข้อความว่ารู้แล้ว <strong>ตำราไม่หาย</strong></li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>ตำรา</th><th>ได้</th></tr></thead>
+<tbody>
+<tr><td>ลวดลายเนื้ออบเคลือบประจำงานปาร์ตี้ที่บ้าน · แบบของแซนด์วิชผลไม้ · แม่พิมพ์บูสเตอร์เยลลี่</td><td>สูตรทำอาหาร</td></tr>
+<tr><td>แบบของขวานสองมือแบบอารยะ · แบบของหอกอารยะ · แบบของธนูอารยะ</td><td>สูตรอาวุธ</td></tr>
+<tr><td>ซ่อมแซมแบบแปลนที่ฉีกขาด · รูปแบบเกราะเกล็ดสายรุ้งที่เชื่อมต่อกัน</td><td>สูตรแปรรูป</td></tr>
+<tr><td>คำแนะนำในการสร้างกล่องของขวัญทนทาน · แบบของป้ายพื้นบอกทางที่ทำจากหนัง / ไม้ · รูปแบบแนวพุ่มไม้เตี้ย / สูง</td><td>แผนผังสิ่งปลูกสร้าง</td></tr>
+</tbody></table></div>
+<aside class="callout callout-note"><p class="callout-title"><span aria-hidden="true">ℹ️</span> หมายเหตุ</p><p>ตำราที่ยังใช้ไม่ได้ (ขึ้นว่า «ยังใช้ตำรานี้ไม่ได้» ตำราไม่หาย): พิมพ์เขียวรูปปั้นหินบะซอล · การถอดรหัส — ยังไม่มีสูตรที่ตรงกับตำราเหล่านี้ในเซิร์ฟ</p>
+</aside>
+<h3 id="ตำราและสูตรฮาโลวีน"><a class="anchor" href="#ตำราและสูตรฮาโลวีน" aria-hidden="true">#</a>ตำราและสูตรฮาโลวีน <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p>ช่วงอีเวนต์ฮาโลวีน (20 ต.ค. – 10 พ.ย.) การ <strong>เช็คชื่อ</strong> ให้ตำรา 2 เล่ม — ตำราชุดและตำราหมวกฮาโลวีน (ได้เป็นชิ้นที่ 3–4 ของลำดับของแจกช่องคี่ ครั้งเดียวต่อตัวละคร) กดใช้แล้วได้สูตร <strong>ชุดคอสตูมหัวกะโหลกชวนขนลุก</strong> และ <strong>หมวกหัวกะโหลกชวนขนลุก</strong> ถาวร</p>
+<ul>
+<li>เช็คชื่อ <strong>ครั้งแรกในช่วงอีเวนต์</strong> (ช่องใดก็ได้) หรือรับรางวัลขั้นคะแนน 200 ครั้งแรก → ปลด <strong>สูตรอีเวนต์ 10 สูตร</strong> ถาวร: ขนมฮาโลวีน · ข้ามต้มฟักทอง · เค้กฟักทอง · น้ำผลไม้แม่มด · เยลลี่แม่มด · ไม้เสียบแมงมุม · ไส้กรอกแม่มด · คุกกี้แมงมุม · หมวกฟักทอง · ค้อนหัวกะโหลกชวนขนลุก — คราฟต์ได้ต่อแม้อีเวนต์จบแล้ว</li>
+<li>เมล็ดฟักทองและเมล็ดต้นใยแมงมุมของอีเวนต์ดูที่ <a href="farming.html">การเพาะปลูก</a></li>
+<li>สูตรอีเวนต์ไม่ให้ค่าประสบการณ์พิเศษ</li>
+</ul>
+<h2 id="ตัวเลขหลัก"><a class="anchor" href="#ตัวเลขหลัก" aria-hidden="true">#</a>ตัวเลขหลัก <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>เรื่อง</th><th>ค่า</th></tr></thead>
+<tbody>
+<tr><td>เวลาคราฟต์ปกติ</td><td>2 วิ (สกิลลดได้ · ต่ำสุด 0.5 วิ)</td></tr>
+<tr><td>เวลาแปรรูป</td><td>ตามสูตร ไม่เกิน 20 วิ</td></tr>
+<tr><td>ความแข็งแรงที่ใช้</td><td>5 ต่อครั้ง</td></tr>
+<tr><td>ความเหนื่อยล้า</td><td>คราฟต์ไม่เพิ่มความเหนื่อยล้า — «ลดความเหนื่อยล้าในการสร้าง» จึงยังไม่มีผล</td></tr>
+<tr><td>โอกาสสำเร็จ</td><td>100% เมื่อค่าคราฟต์ ≥ ระดับความยาก · ต่ำกว่านั้นลดลง — ดู <a href="#โอกาสสำเร็จและล้มเหลว">โอกาสสำเร็จและล้มเหลว</a></td></tr>
+<tr><td>ความสำเร็จแบบไร้ที่ติ</td><td>ปกติ 10% · บัพแล้วสูงสุด 30% — ดู <a href="#โอกาสความสำเร็จแบบไร้ที่ติ">โอกาสความสำเร็จแบบไร้ที่ติ</a></td></tr>
+<tr><td>เลเวลของที่ได้</td><td>ค่าเฉลี่ยเลเวลวัตถุดิบทุกชิ้น ปัดลง (ไม่เกินเลเวลสูงสุดของสูตร)</td></tr>
+<tr><td>เลเวลของที่แปรรูป</td><td>เท่ากับชิ้นเดิม</td></tr>
+</tbody></table></div>
+<p><strong>ความสำเร็จแบบไร้ที่ติ</strong> ได้ป้าย «ความสำเร็จแบบไร้ที่ติ» บนของ · ค่าทนทานสูงสุด +10% · สูตรแปรรูปให้คุณสมบัติที่เพิ่มขึ้น +1 ระดับ · สูตรที่สร้างของชิ้นใหม่ได้ <strong>โอกาสแปรรูปเพิ่ม 1 ครั้ง</strong> (เช่น เกราะ 3 → 4) · ค่าประสบการณ์ ×1.5</p>
+<h3 id="ค่าประสบการณ์"><a class="anchor" href="#ค่าประสบการณ์" aria-hidden="true">#</a>ค่าประสบการณ์ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p>คราฟต์แต่ละครั้งได้ค่าประสบการณ์หมวดสกิลของสูตรนั้น (การสร้างอาวุธ/เครื่องมือ · การตัดเย็บ · การทำอาหาร · การก่อสร้าง · การแปรรูป) ตามเลเวลของที่ได้เทียบเลเวลหมวด — ใช้ตารางเดียวกับ <a href="gathering.html">การเก็บของ</a> · <strong>ล้มเหลวหนัก</strong> ได้ <strong>ครึ่งหนึ่ง</strong> (ค่าประสบการณ์ตัวละครก็ครึ่งหนึ่ง) · เควสคราฟต์ไม่นับ</p>
+<p><strong>มัด</strong> (มัดใบไม้ / มัดก้านไม้) และ <strong>ตัดแต่งวัสดุ</strong> ได้ค่าประสบการณ์ของหมวด <strong>การก่อสร้าง</strong> แทนการแปรรูป (จำนวนเท่าเดิม) — สูตรแปรรูปอื่น เช่น แผ่น ถ่าน บานพับ เสา ยังเป็นการแปรรูป · ไร้ที่ติของสองสูตรนี้จึงนับกับเควสรายสัปดาห์สายสร้างแทนสายแปรรูป</p>
+<h2 id="โอกาสสำเร็จและล้มเหลว"><a class="anchor" href="#โอกาสสำเร็จและล้มเหลว" aria-hidden="true">#</a>โอกาสสำเร็จและล้มเหลว <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p>การคราฟต์ทุกครั้งทอยเทียบ <strong>ระดับความยาก</strong> ของสูตร (ดูได้ในหน้าต่างผลลัพธ์ที่คาด — ยิ่งเลเวลผลงานสูงยิ่งยาก) กับ <strong>ค่าคราฟต์</strong> ของหมวดสูตรนั้น:</p>
+<pre><code>ส่วนต่าง = ระดับความยาก − ค่าคราฟต์   (เป็น 0 ถ้าค่าคราฟต์สูงกว่า)
+โอกาสสำเร็จ = 1 − (ส่วนต่าง ÷ 100)²</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th>ผล</th><th>โอกาส</th><th>เกิดอะไรขึ้น</th></tr></thead>
+<tbody>
+<tr><td>สำเร็จ</td><td>1 − (ส่วนต่าง ÷ 100)²</td><td>ได้ของ — อาจเป็นความสำเร็จแบบไร้ที่ติ</td></tr>
+<tr><td>ล้มเหลว</td><td>(ส่วนต่าง ÷ 100)² − (ส่วนต่าง ÷ 100)³</td><td>เกมแสดงเหมือนสำเร็จและได้ของ แต่ไม่มีความสำเร็จแบบไร้ที่ติ ไม่มีของแถม · อาวุธ เครื่องมือ เสื้อผ้า เครื่องประดับ เริ่มที่ความทนทาน <strong>70%</strong> ของสูงสุด (ซ่อมกลับเต็มได้) · อาหารและวัตถุดิบไม่กระทบ</td></tr>
+<tr><td>ล้มเหลวหนัก</td><td>(ส่วนต่าง ÷ 100)³</td><td>เกมขึ้น «สร้าง … ล้มเหลว» · <strong>ไม่ได้ของ</strong> · วัตถุดิบเสีย <strong>ส่วนต่าง %</strong> ที่เหลือคืนกระเป๋า (ชิ้นเดิม) · ความแข็งแรงและเวลาที่ใช้ไปไม่คืน · ได้ค่าประสบการณ์ครึ่งหนึ่ง</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>อัตราคืนวัตถุดิบ</strong> — ขั้นบันไดความชำนาญของ 8 หมวดคราฟต์ให้อัตราคืน (+10% +15% +20% +30% ต่อขั้น): วัตถุดิบที่เสียตอนล้มเหลวหนัก × (1 − อัตราคืน) · คืนได้สูงสุด <strong>90%</strong> · หมวดเพาะปลูกไม่มี</li>
+<li>ชิ้นที่เสียสุ่มเอา — ต่อช่อง จำนวน × สัดส่วนที่เสีย เศษที่เหลือเป็นโอกาสเสียเพิ่มอีก 1 ชิ้น</li>
+<li>สูตร <strong>ย้อมสีและฟอกสี</strong> ไม่ใช้ค่าคราฟต์ สำเร็จเสมอ · สูตรที่ไม่มีระดับความยากก็เช่นกัน</li>
+<li><strong>ฝากทำที่โต๊ะทำงาน</strong> ทอยตอนวางงาน — ถ้าล้มเหลวหนักจะไม่มีงานวางบนโต๊ะ</li>
+<li>ก่อน 24 ก.ย. คราฟต์สำเร็จทุกครั้ง ตอนนี้ใช้สูตรต้นฉบับแล้ว</li>
+</ul>
+<h3 id="ตัวอย่าง"><a class="anchor" href="#ตัวอย่าง" aria-hidden="true">#</a>ตัวอย่าง</h3>
+<p>สูตรอาวุธ · ค่าคราฟต์ = ตัวเลขค่าคราฟต์ (เช่น «10» = ตัวละคร Lv10 ไม่มีโบนัส) · แต่ละช่อง = สำเร็จ · ล้มเหลวหนัก · วัตถุดิบที่เสียถ้าล้มเหลวหนัก</p>
+<p><strong>สูตรที่ระดับความยาก = 1 × เลเวลของ</strong> (ด้ามและใบมีดกระดูกบางสูตร)</p>
+<div class="table-wrap"><table>
+<thead><tr><th>ค่าคราฟต์</th><th>ของ Lv10 (ความยาก 10)</th><th>ของ Lv30 (ความยาก 30)</th><th>ของ Lv60 (ความยาก 60)</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>100%</td><td>96% · 0.8% · 20%</td><td>75% · 12.5% · 50%</td></tr>
+<tr><td>30</td><td>100%</td><td>100%</td><td>91% · 2.7% · 30%</td></tr>
+<tr><td>50</td><td>100%</td><td>100%</td><td>99% · 0.1% · 10%</td></tr>
+<tr><td>60</td><td>100%</td><td>100%</td><td>100%</td></tr>
+</tbody></table></div>
+<p><strong>สูตรที่ระดับความยาก = 1.75 × เลเวลของ</strong> (หัวขวานโลหะที่ปรับปรุงแล้ว ฯลฯ)</p>
+<div class="table-wrap"><table>
+<thead><tr><th>ค่าคราฟต์</th><th>ของ Lv10 (ความยาก 17.5)</th><th>ของ Lv30 (ความยาก 52.5)</th><th>ของ Lv60 (ความยาก 105)</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>99.4% · 0.04% · 7.5%</td><td>81.9% · 7.7% · 42.5%</td><td>9.8% · 85.7% · 95%</td></tr>
+<tr><td>30</td><td>100%</td><td>94.9% · 1.1% · 22.5%</td><td>43.8% · 42.2% · 75%</td></tr>
+<tr><td>60</td><td>100%</td><td>100%</td><td>79.8% · 9.1% · 45%</td></tr>
+<tr><td>100</td><td>100%</td><td>100%</td><td>99.8% · 0.01% · 5%</td></tr>
+</tbody></table></div>
+<p>ก่อน 24 ก.ย.: สำเร็จ 100% ทุกช่อง ไม่เสียวัตถุดิบ · วัตถุดิบที่เสียในตารางยังไม่หักอัตราคืน</p>
+<h3 id="ค่าคราฟต์นับทุกแหล่ง"><a class="anchor" href="#ค่าคราฟต์นับทุกแหล่ง" aria-hidden="true">#</a>ค่าคราฟต์นับทุกแหล่ง <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p>ค่าที่ใช้ทอยคือตัวเลขเดียวกับที่หน้าตัวละครแสดง: สกิล · บันไดความชำนาญ · ฉายา · คุณสมบัติของไอเทม · บล็อกดัดแปลงของไอเทม · บัพอาหาร · บรรยากาศบ้าน · บันไดความชำนาญก็ใช้ตัวเลขนี้ — ขั้นที่ได้เพราะใส่ของไว้ ถอดของแล้วไม่ถูกยึดคืน · คุณสมบัติ «บัพทักษะในการสร้าง» บวกให้ทั้ง 9 ค่าคราฟต์ (ทักษะสร้างอาวุธ · ทักษะตัดเย็บ · ทักษะเย็บผ้า · ทักษะหัตถกรรม · ทักษะแปรรูปโลหะ · ทักษะทำอาหาร · ทักษะสร้างเฟอร์นิเจอร์ · ทักษะก่อสร้าง · ทักษะเพาะปลูก) · ดูเพิ่มที่ <a href="stats.html">ค่าสถานะ</a></p>
+<h3 id="โอกาสความสำเร็จแบบไร้ที่ติ"><a class="anchor" href="#โอกาสความสำเร็จแบบไร้ที่ติ" aria-hidden="true">#</a>โอกาสความสำเร็จแบบไร้ที่ติ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<ul>
+<li>พื้นฐาน <strong>10%</strong> · ค่าคราฟต์สูงกว่าระดับความยากมาก ๆ ช่วยเพิ่ม — ทักษะสร้างอาวุธและทักษะตัดเย็บได้ถึงราว 17% · ทักษะสร้างเฟอร์นิเจอร์และทักษะก่อสร้างราว 13% · หมวดอื่นคง 10%</li>
+<li>บัพที่เพิ่มอัตราความสำเร็จแบบไร้ที่ติบวกเพิ่มจากนั้น — เช่น บรรยากาศบ้าน «ฤดูใบไม้ผลิที่หอมหวาน» +4% (10% → 14%) · รวมไม่เกิน <strong>30%</strong></li>
+<li>ล้มเหลวหรือล้มเหลวหนักไม่มีทางเป็นความสำเร็จแบบไร้ที่ติ</li>
+</ul>
+<div class="table-wrap"><table>
+<thead><tr><th>ทักษะสร้างอาวุธ \ ความยาก</th><th>5</th><th>15</th><th>30</th><th>45</th><th>60</th><th>105</th></tr></thead>
+<tbody>
+<tr><td>100</td><td>10%</td><td>10%</td><td>10%</td><td>10%</td><td>10%</td><td>10%</td></tr>
+<tr><td>150</td><td>14.5%</td><td>13.5%</td><td>12%</td><td>10.5%</td><td>10%</td><td>10%</td></tr>
+<tr><td>180</td><td>17.4%</td><td>16.2%</td><td>14.4%</td><td>12.6%</td><td>10.8%</td><td>10%</td></tr>
+</tbody></table></div>
+<h2 id="ฝากทำที่โต๊ะทำงาน"><a class="anchor" href="#ฝากทำที่โต๊ะทำงาน" aria-hidden="true">#</a>ฝากทำที่โต๊ะทำงาน <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<ul>
+<li>สูตรที่รองรับ (เช่น หลอมแร่และขัดโลหะที่เตาเผา) วางงานไว้บน <strong>โต๊ะทำงาน</strong> ได้ — วัตถุดิบถูกหักทันที ของจะรออยู่บนโต๊ะจนครบเวลา</li>
+<li>เวลาฝากทำเป็นของแต่ละสูตร (อย่างน้อย 5 วิ) · โต๊ะเต็มแล้วฝากเพิ่มไม่ได้</li>
+<li>โต๊ะงานช่าง เตา กองไฟ ราวตาก ในอาณาเขตคนอื่น ต้องได้สิทธิ์ครบ <strong>ใช้ + ฝาก + หยิบ</strong> จึงจะคราฟต์ วางงาน หรือรับงานได้ (ไม่ครบ = ปุ่มเป็นสีเทา) — ดู <a href="land.html#กล่อง-โต๊ะงานช่าง-และคอกในอาณาเขตคนอื่น">อาณาเขต</a></li>
+<li>โต๊ะ เตา เตาเผา ราวตาก ที่สร้างสำเร็จเป็น <strong>เลเวล 60</strong> ได้ช่องฝากทำเพิ่ม 1 ช่อง (อย่างน้อยเท่าช่องที่เลเวล 59 + 1)</li>
+<li>โต๊ะที่สร้างจากวัตถุดิบคุณสมบัติ «แตกหักง่าย» อาจได้ «พื้นที่เพิ่มเติม» (+1 ช่อง) หรือ «ระยะเวลาสั้นลง» (เวลาฝากทำ −5%) ดู <a href="tags.html">คุณสมบัติของไอเทม</a></li>
+<li>กด <strong>สำเร็จในทันที</strong> ที่ช่องงานได้ — ราคาบนปุ่มเป็นเพชรตามเวลาที่เหลือ: เหลือไม่เกิน 1 นาที = 1 เพชร · ราว 1 เพชรต่อนาทีจนถึง 1 ชั่วโมง (60 เพชร) · 1 วัน = 500 เพชร
+<ul>
+<li>มี <strong>T Stone</strong> พอ → หักเป็น T Stone แทน <strong>เพชรละ 10 T</strong> (เช่น เหลือ 15 นาที = 15 เพชร → 150 T) · ไม่พอ → หักเพชรเต็มจำนวน (ไม่หักผสม) · ยอดที่หักจริงขึ้นในแชทระบบ</li>
+<li>กดแล้วงานเสร็จทันที ของรอรับบนโต๊ะ (เอฟเฟกต์ประกายขึ้น) · งานเสร็จไปก่อนแล้ว = คืนเงินที่หัก</li>
+</ul>
+</li>
+</ul>
+<h3 id="เอฟเฟกต์เมื่อของเสร็จ"><a class="anchor" href="#เอฟเฟกต์เมื่อของเสร็จ" aria-hidden="true">#</a>เอฟเฟกต์เมื่อของเสร็จ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<ul>
+<li>มีของฝากทำที่เสร็จแล้วรอรับอย่างน้อย 1 ช่อง → โต๊ะ เตา ราวตาก หรือกองไฟนั้นมี <strong>เอฟเฟกต์ประกาย</strong> ขึ้นเอง (ช่องอื่นยังทำอยู่ก็ขึ้น) · คนที่อยู่ใกล้เห็นด้วย</li>
+<li>รับของที่เสร็จออกหมด → เอฟเฟกต์หาย · งานที่ยังไม่ครบเวลาไม่ทำให้ขึ้น</li>
+</ul>
+<h3 id="ใครยกเลิกและรับของได้"><a class="anchor" href="#ใครยกเลิกและรับของได้" aria-hidden="true">#</a>ใครยกเลิกและรับของได้ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<ul>
+<li>ยกเลิกงาน หรือรับของที่เสร็จ ได้เฉพาะ <strong>คนที่ฝาก</strong> กับ <strong>เจ้าของโต๊ะ</strong> — เพื่อนหรือคนในแคลนที่มีสิทธิ์หยิบของที่โต๊ะ ยกเลิกหรือหยิบงานของคนอื่นไม่ได้</li>
+<li>โต๊ะที่ไม่มีเจ้าของ = คนที่ฝากเท่านั้น</li>
+<li>ยกเลิกระหว่างทำ วัตถุดิบของงานนั้นหาย</li>
+</ul>
+<h3 id="สูตรฝากทำที่โต๊ะของแคมป์"><a class="anchor" href="#สูตรฝากทำที่โต๊ะของแคมป์" aria-hidden="true">#</a>สูตรฝากทำที่โต๊ะของแคมป์ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<ul>
+<li>โต๊ะงานช่าง เตา และราวตากที่เกมตั้งไว้ในแคมป์ ทำสูตรฝากทำได้ แต่ <strong>วางทิ้งไว้ไม่ได้</strong> — กลายเป็นหลอดคราฟต์ยาวเท่าเวลาฝากทำของสูตรนั้น ต้องยืนรอจนจบ</li>
+<li>เดินออกห่างจุดเริ่มเกิน 1 ไทล์ระหว่างหลอด = ยกเลิก (วัตถุดิบไม่หาย เพราะหักตอนหลอดจบ)</li>
+<li>อยากวางงานแล้วไปทำอย่างอื่น ให้ใช้โต๊ะของตัวเอง</li>
+</ul>
+<h2 id="แปรรูปวัตถุดิบ"><a class="anchor" href="#แปรรูปวัตถุดิบ" aria-hidden="true">#</a>แปรรูปวัตถุดิบ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p><figure><img src="../images/tex/Assets__Texture2D__weaponcrafting_2-w560.webp" alt="อาวุธที่ประกอบจากชิ้นส่วน" width="560" height="280" loading="lazy" class="img-figure"><figcaption>อาวุธที่ประกอบจากชิ้นส่วน</figcaption></figure></p>
+<p>การแปรรูปส่วนใหญ่ไม่ได้เปลี่ยนเป็นของชิ้นใหม่ แต่เพิ่มแท็ก/คุณสมบัติให้ชิ้นเดิม แล้วสูตรขั้นถัดไปจะตรวจแท็กเหล่านั้น (บางสูตรเปลี่ยนชนิดของด้วย เช่น สกัดแร่ · การสกัดอัญมณี — เลเวล สี และคุณสมบัติเดิมติดไปครบ) ตัวอย่างสูตรแปรรูป:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>สูตร</th><th>ใช้กับ</th><th>ผล</th></tr></thead>
+<tbody>
+<tr><td>ตัดแต่งวัสดุ</td><td>กระดูก หิน ไม้</td><td>ได้แท็กตัดแต่ง → ใช้ทำใบมีด/ด้ามได้</td></tr>
+<tr><td>แปรรูปวัตถุดิบด้วยการบีบอัด</td><td>ของที่ตัดแต่งแล้ว + น้ำ</td><td>ได้แท็กแปรรูป + คุณสมบัติเพิ่ม</td></tr>
+<tr><td>สกัดแร่</td><td>แร่ + ถ่าน</td><td>กลายเป็นโลหะตามชื่อ เช่น แร่เหล็ก → เหล็ก (ก้อนปกติ — แร่ก้อนใหญ่จากไร้ที่ติถลุงแล้วก็เป็นก้อนปกติ)</td></tr>
+<tr><td>แยกสารประกอบซัลเฟอร์ในโลหะ</td><td>ก้อนโลหะ + ถ่าน 2 + เปลือกหอย 2</td><td>ได้ «ระดับความบริสุทธิ์สูง»</td></tr>
+<tr><td>การสกัดอัญมณี</td><td>เพชรพลอย + น้ำ</td><td>กลายเป็นอัญมณีชนิดเดียวกัน</td></tr>
+<tr><td>การขัดอัญมณีอย่างประณีต / อย่างหยาบ</td><td>อัญมณี + เปลือกหอย / กระดองแมงดาทะเล</td><td>ได้ «อัญมณีขัดเงา» + เคลือบเงาสีของอัญมณีนั้นขึ้น</td></tr>
+<tr><td>หนังตากแห้ง</td><td>หนัง / ขนสัตว์</td><td>ได้ «ตากแห้ง»</td></tr>
+<tr><td>ฟอกเส้นใย</td><td>หนังตากแห้ง + เปลือกไม้ + ใบไม้</td><td>ฟอกหนัง · ลบกลิ่นเหม็น</td></tr>
+<tr><td>กันน้ำ</td><td>หนัง / ผ้า + ไขมัน</td><td>ได้ «กันน้ำ»</td></tr>
+<tr><td>ขยายสายรัด</td><td>เชือก 2 เส้น (เถา ด้าย เอ็นก็ได้)</td><td>ได้แท็กเชือกยาว → ทำสายธนูได้</td></tr>
+<tr><td>แผ่น</td><td>ท่อน/เสา</td><td>กลายเป็นแผ่น</td></tr>
+</tbody></table></div>
+<h3 id="ถลุงแร่ได้โลหะ"><a class="anchor" href="#ถลุงแร่ได้โลหะ" aria-hidden="true">#</a>ถลุงแร่ได้โลหะ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p>ถลุงแร่ด้วย <strong>สกัดแร่</strong> ที่เตาเผา ได้โลหะตามชื่อแร่:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>แร่</th><th>ได้</th></tr></thead>
+<tbody>
+<tr><td>แร่เหล็ก</td><td>เหล็ก</td></tr>
+<tr><td>แร่ทองแดง</td><td>ทองแดง</td></tr>
+<tr><td>แร่ดีบุก</td><td>ดีบุก</td></tr>
+<tr><td>แร่สังกะสี</td><td>สังกะสี</td></tr>
+<tr><td>แร่ทอง</td><td>ทอง</td></tr>
+<tr><td>แร่เงิน</td><td>เงิน</td></tr>
+</tbody></table></div>
+<ul>
+<li>แร่เหล็กหล่อดำ และแร่ตะกั่ว ไม่มีโลหะแยกในเกมต้นฉบับ — ถลุงแล้วยังชื่อเดิม แต่นับว่าถลุงแล้ว ใช้ทำโลหะผสมได้ตามเดิม</li>
+<li>เลเวล สี และคุณสมบัติของแร่ติดไปกับโลหะ · อุปกรณ์ที่ทำจากโลหะถลุงได้ความทนแบบโลหะ</li>
+<li>แร่ที่ถลุงไว้ก่อน 10 ต.ค. 2026 เปลี่ยนเป็นโลหะให้แล้ว</li>
+</ul>
+<h3 id="สกัดและขัดอัญมณี"><a class="anchor" href="#สกัดและขัดอัญมณี" aria-hidden="true">#</a>สกัดและขัดอัญมณี <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p><strong>เพชรพลอย</strong> (หินอัญมณีที่ขุดได้) ต้องผ่าน 2 ขั้นก่อนใช้งาน:</p>
+<ol>
+<li><strong>การสกัดอัญมณี</strong> ที่โต๊ะทำงาน + ค้อน (เพชรพลอย + น้ำ) → ได้อัญมณีชนิดเดียวกัน: ทับทิม · ไพลิน · มรกต · แอเมทิสต์ · เพชร · บุษราคัม — อัญมณีเลเวล 50 ขึ้นไปใช้ทำ <strong>สร้อยคออัญมณี</strong> ได้ · อัญมณีที่สกัดแล้วสกัดซ้ำไม่ได้</li>
+<li><strong>การขัดอัญมณีอย่างประณีต</strong> (+ เปลือกหอย) หรือ <strong>การขัดอัญมณีอย่างหยาบ</strong> (+ กระดองแมงดาทะเล) ที่โต๊ะทำงานสำหรับสร้างอัญมณี + มีด → ได้ <strong>อัญมณีขัดเงา</strong> (เลเวล 50 ขึ้นไปใช้ทำแว่นตาอัญมณี) และ <strong>เคลือบเงา</strong> สีของอัญมณีนั้นขึ้น</li>
+</ol>
+<div class="table-wrap"><table>
+<thead><tr><th>เคลือบเงาที่เพิ่ม</th><th>ปกติ</th><th>สำเร็จมาก</th><th>ผิดพลาด</th></tr></thead>
+<tbody>
+<tr><td>ขัดอย่างประณีต</td><td>+2</td><td>+3</td><td>+1</td></tr>
+<tr><td>ขัดอย่างหยาบ</td><td>+1</td><td>+4</td><td>+0</td></tr>
+</tbody></table></div>
+<ul>
+<li>เคลือบเงาเริ่มที่ <strong>1</strong> สูงสุด <strong>25</strong> · สีตามชนิด: ทับทิม = เคลือบเงาสีแดง · ไพลิน = เคลือบเงาสีน้ำเงิน · มรกต = เคลือบเงาสีเขียว · แอเมทิสต์ = เคลือบเงาสีม่วง · เพชร = เคลือบเงาสีขาว · บุษราคัม = เคลือบเงาสีเหลือง</li>
+<li>ขัดซ้ำได้ตามครั้งแปรรูปที่เหลือของชิ้น</li>
+<li>เพชรพลอยที่สกัดไว้ก่อน 10 ต.ค. 2026 เปลี่ยนเป็นอัญมณีให้แล้ว · อัญมณีที่เคยขัดได้เคลือบเงาสีของตัวเองตามจำนวนครั้งที่ขัด</li>
+<li>กำลังจะมา: ผลของเคลือบเงาแต่ละสี และบัพของแว่นที่ทำจากอัญมณีขัดเงา — ตอนนี้ยังไม่มีค่าบัพ (<a href="clothing.html#คำอธิบายไอเทมบอกค่าบัพตามเลเวล">เสื้อผ้าและเครื่องประดับ</a>)</li>
+</ul>
+<h3 id="โอกาสแปรรูป"><a class="anchor" href="#โอกาสแปรรูป" aria-hidden="true">#</a>โอกาสแปรรูป <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<ul>
+<li>ของแต่ละชิ้นมี <strong>โอกาสแปรรูป</strong> — ส่วนใหญ่ <strong>3 ครั้ง</strong> · <strong>แร่ 5 ครั้ง</strong> · <strong>หนังธรรมดา 4 ครั้ง</strong> (หนังติดขนและหนังเกราะ 3) · เก็บแบบไร้ที่ติได้เพิ่ม (<a href="tags.html#ผลพิเศษของความสำเร็จแบบไร้ที่ติตอนเก็บ">ผลพิเศษ</a>)</li>
+<li>คราฟต์สูตรที่สร้างของชิ้นใหม่แล้วไร้ที่ติ ผลงานได้โอกาสแปรรูปเพิ่ม 1 ครั้ง</li>
+<li>สูตรที่แสดงบรรทัด <strong>«โอกาสแปรรูปที่ใช้ไป»</strong> จะหัก 1 ครั้งจากชิ้นในช่องหลัก — มี 77 สูตร: สูตรแปรรูปเกือบทั้งหมด + สูตรสร้างปกติ 8 สูตร (ของที่ได้รับจำนวนครั้งที่เหลือ −1 ต่อจากชิ้นหลัก)</li>
+<li>การย้อมสีไม่หักโอกาสแปรรูป (สีที่ได้เป็นค่าเฉลี่ยครึ่งต่อครึ่งระหว่างสีเดิมกับสีย้อม) · การฟอกสี (ฟอกขาว) หัก 1 ครั้ง — เสื้อผ้าส่วนใหญ่จึงฟอกได้ 3 ครั้ง · ฟอกครั้งละราว 70% เข้าหาสีขาว สีเข้มฟอกครบ 3 ครั้งได้เกือบขาวแต่ไม่ขาวสนิท</li>
+<li>ครบแล้วแปรรูปต่อไม่ได้ — เกมแจ้ง «ของชิ้นนี้แปรรูปต่อไม่ได้แล้ว»</li>
+<li>การแก้ไขอุปกรณ์ใช้ช่องแก้ไขแทนโอกาสแปรรูป</li>
+</ul>
+<h3 id="ขัดโลหะด้วยเปลือกหอย"><a class="anchor" href="#ขัดโลหะด้วยเปลือกหอย" aria-hidden="true">#</a>ขัดโลหะด้วยเปลือกหอย <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h3>
+<p><figure><img src="../images/tex/Assets__Texture2D__weaponcrafting_5-w560.webp" alt="โลหะกับผง และโลหะกับเปลือกหอย" width="560" height="280" loading="lazy" class="img-figure"><figcaption>โลหะกับผง และโลหะกับเปลือกหอย</figcaption></figure></p>
+<p>สายทำโลหะบริสุทธิ์: แร่ → <strong>สกัดแร่</strong> (แร่ + ถ่าน) → <strong>แยกสารประกอบซัลเฟอร์ในโลหะ</strong> (ก้อนโลหะ + ถ่าน 2 + <img src="../images/atlas/rgb_atlas/icon_nat_clam.webp" alt="เปลือกหอย" width="60" height="56" loading="lazy" class="img-inline"> เปลือกหอย 2) → ก้อนโลหะได้ «ระดับความบริสุทธิ์สูง»</p>
+<ul>
+<li>ระดับของ «ระดับความบริสุทธิ์สูง» <strong>เท่ากับเลเวลชิ้น</strong> — ใบมีดโลหะขั้นสูงและด้ามธนู/หน้าไม้โลหะ 17 สูตรขอระดับ 35 หรือ 55</li>
+<li>«กันน้ำ» (สูตรกันน้ำ) และ «ตากแห้ง» (สูตรตากแห้ง) ใช้กฎเดียวกัน</li>
+<li>ของที่ขัดไว้ก่อนการแก้ไขนี้ใช้ได้ทันทีโดยไม่ต้องทำใหม่</li>
+</ul>
+<h2 id="คุณสมบัติที่ส่งต่อ"><a class="anchor" href="#คุณสมบัติที่ส่งต่อ" aria-hidden="true">#</a>คุณสมบัติที่ส่งต่อ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p>วัตถุดิบใน <strong>ช่องหลัก</strong> ส่งคุณสมบัติต่อให้ของที่คราฟต์ได้ <strong>ครบทุกขั้น ไม่มีการสุ่มหาย</strong> — ช่องหลักมีหลายชิ้นจะเฉลี่ยระดับคุณสมบัติ (ปัดลง) ส่วนคุณสมบัติสีเขียวมีแค่ชิ้นเดียวก็พอ · หน้าต่าง <strong>ผลลัพธ์ที่คาด</strong> โชว์คุณสมบัติที่ผลงานจะได้ก่อนกดทำ — รายละเอียดที่ <a href="tags.html#คุณสมบัติส่งต่อตอนคราฟต์">คุณสมบัติของไอเทม</a></p>
+<h2 id="ซ่อม"><a class="anchor" href="#ซ่อม" aria-hidden="true">#</a>ซ่อม</h2>
+<p>เครื่องมือและอาวุธสึกเมื่อใช้งาน ซ่อมด้วยเครื่องมือซ่อมหรือ T Stone — ดู <a href="decay.html">การผุพังและการซ่อม</a></p>
+<h2 id="สูตรที่ปรับตามชีต"><a class="anchor" href="#สูตรที่ปรับตามชีต" aria-hidden="true">#</a>สูตรที่ปรับตามชีต <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p>สูตร 15 รายการถูกปรับให้ตรงตารางสูตรของชีตชุมชน DurangoFAQ — หน้าสูตรในเกมโชว์ค่าใหม่ <strong>หลังกลับไปหน้า Title หรือล็อกอินใหม่</strong> (ระหว่างนั้นถ้าหน้าสูตรยังโชว์ค่าเก่า ให้ใส่ตามค่าใหม่)</p>
+<div class="table-wrap"><table>
+<thead><tr><th>ของ</th><th>เดิม</th><th>ใหม่</th></tr></thead>
+<tbody>
+<tr><td>ด้ามจับ</td><td>แท่ง ×2</td><td>แท่ง ×1</td></tr>
+<tr><td>ขวานงานกระดูก · มีดงานกระดูก</td><td>ไม่ต้องใช้โต๊ะ</td><td><strong>โต๊ะทำงาน Lv40</strong></td></tr>
+<tr><td>ค้อนงานกระดูก</td><td>ไม่ต้องใช้โต๊ะ · แท่งกระดูก ×2</td><td><strong>โต๊ะทำงาน Lv40</strong> · แท่งกระดูก ×1</td></tr>
+<tr><td>เลื่อยโลหะ · พลั่วโลหะ</td><td>สายหนังตากแห้ง ×2 · ด้ามจับ ×2</td><td>สายหนังตากแห้ง ×1 · ด้ามจับ ×1</td></tr>
+<tr><td>ปีกธนูกะโหลก</td><td>เลเวลสูงสุด 59</td><td>เลเวลสูงสุด 60</td></tr>
+<tr><td>ปีกธนูกระดูกนกนางนวล</td><td>เลเวลสูงสุด 59 · หนังฟอก ×2</td><td>เลเวลสูงสุด 60 · หนังฟอก ×1</td></tr>
+<tr><td>คันธนูแบบมาตรฐาน</td><td>เชือกฟาง ×2</td><td>เชือกฟาง ×1</td></tr>
+<tr><td>หน้าไม้ไม้ (ปีกหน้าไม้)</td><td>เลเวลสูงสุด 59 · เสาไม้ตัดแต่ง ×2</td><td>เลเวลสูงสุด <strong>39</strong> · เสาไม้ตัดแต่ง ×1</td></tr>
+<tr><td>หน้าไม้กระดูก (ปีกหน้าไม้)</td><td>เลเวลสูงสุด 59</td><td>เลเวลสูงสุด 60</td></tr>
+<tr><td>ใบมีดโลหะ</td><td>เตาเผา Lv35</td><td><strong>โต๊ะทำงาน Lv15</strong></td></tr>
+<tr><td>หัวขวานเหล็กรูปนกขนาดใหญ่</td><td>เขาตัดแต่ง ×2 · ตะปูโลหะ ×3</td><td><strong>เขี้ยวตัดแต่ง</strong> ×2 · ตะปูโลหะ ×2</td></tr>
+<tr><td>หัวขวานโลหะเหลี่ยมขนาดใหญ่ 2</td><td>เชือก ×4</td><td><strong>ออบซิเดียนที่ตัดแต่งแล้ว</strong> ×4</td></tr>
+<tr><td>โต๊ะทำอาวุธ (สิ่งปลูกสร้าง)</td><td>รูปทรงแผ่นแปรรูป ×8</td><td><strong>รูปทรงแผ่นตัดแต่ง</strong> ×8 (Lv50)</td></tr>
+</tbody></table></div>
+<p>สูตรอื่นตรงชีตอยู่แล้ว ไม่เปลี่ยน · โต๊ะทำอาวุธมีรูปโมเดลให้เห็นบนแผนที่แล้ว</p>
+<h2 id="สูตรที่ทำได้เพิ่มจากวัตถุดิบเฉพาะสายพันธุ์"><a class="anchor" href="#สูตรที่ทำได้เพิ่มจากวัตถุดิบเฉพาะสายพันธุ์" aria-hidden="true">#</a>สูตรที่ทำได้เพิ่มจากวัตถุดิบเฉพาะสายพันธุ์ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p>ของที่แล่จากสัตว์หรือได้จากกับดักตอนนี้ขึ้นชื่อตามสายพันธุ์ (<a href="gathering.html#ชื่อของที่เก็บตามแหล่งที่มา">ชื่อของที่เก็บตามแหล่งที่มา</a>) และทำให้สูตรที่เคยทำไม่ได้ ทำได้ 7 อย่าง:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>สูตร/สิ่งปลูกสร้าง</th><th>วัตถุดิบเฉพาะที่ขอ</th></tr></thead>
+<tbody>
+<tr><td>พรมหนังแอนดรูซาร์ดัส</td><td>หนังแอนดรูซาร์ดัส (ตากแล้วฟอก)</td></tr>
+<tr><td>เบาะนั่งมินิคอมพี (2 แบบ)</td><td>หนังคอมพ์ซอกนาธัส ×15 · เขี้ยวคอมพ์ซอกนาธัส ×5</td></tr>
+<tr><td>สร้อยคอเขี้ยวแบรคิโอ</td><td>เขี้ยวแบรคิโอ (ตัดแต่ง)</td></tr>
+<tr><td>หมวกขนหมาป่า</td><td>หนังหมาป่าขาว (ตากแล้วฟอก ยังเป็นหนังหมาป่าขาว)</td></tr>
+<tr><td>ฟอกหนังด้วยน้ำมันเซเบอร์ทูธขาว</td><td>ไขมันเซเบอร์ทูธขาว ×8</td></tr>
+<tr><td>ยาต้านการอักเสบ</td><td>ราก (จากนกสวรรค์)</td></tr>
+</tbody></table></div>
+<p>เนื้อของสัตว์บางชนิดใช้เป็นวัตถุดิบบำรุงกำลังของโมจิ เนื้อสัตว์เสียบไม้ และซุปไก่ผสมโสมได้ · ชิ้นส่วนบ้าน (หลังคา ผนัง พื้น) ที่คราฟต์จากวัสดุที่รู้แหล่งจะส่งต่อแหล่งไปให้บ้าน ทำให้ลายบนบ้านเปลี่ยนตามวัสดุ</p>
+<h2 id="เคล็ดลับ"><a class="anchor" href="#เคล็ดลับ" aria-hidden="true">#</a>เคล็ดลับ</h2>
+<aside class="callout callout-tip"><p class="callout-title"><span aria-hidden="true">💡</span> เคล็ดลับ</p><p>เลเวลของที่ได้คือค่าเฉลี่ยของวัตถุดิบ <strong>ทุกชิ้น</strong> — วัตถุดิบรองเลเวลต่ำชิ้นเดียวก็ดึงเลเวลผลงานลงได้</p>
+</aside>
+<aside class="callout callout-tip"><p class="callout-title"><span aria-hidden="true">💡</span> เคล็ดลับ</p><p>วางแผนสายแปรรูปก่อนเริ่ม — ของแต่ละชิ้นแปรรูปได้แค่ 3 ครั้ง (แร่ 5 · หนังธรรมดา 4)</p>
+</aside>
+<aside class="callout callout-tip"><p class="callout-title"><span aria-hidden="true">💡</span> เคล็ดลับ</p><p>งานยาว ๆ อย่างหลอมและขัดโลหะ ฝากทำไว้ที่เตาเผาแล้วออกไปเก็บของต่อได้</p>
+</aside>
+<aside class="callout callout-tip"><p class="callout-title"><span aria-hidden="true">💡</span> เคล็ดลับ</p><p>ก่อนคราฟต์ของเลเวลสูง เปิด <strong>ผลลัพธ์ที่คาด</strong> ดูก่อน — ถ้าอัตราความสำเร็จต่ำ เพิ่มค่าคราฟต์ก่อน (สกิล อาหาร อุปกรณ์ ฉายา) หรือทำของเลเวลต่ำลงมา</p>
+</aside>
+<h2 id="คราฟต์กับแอ็กชันอื่นทำพร้อมกันไม่ได้"><a class="anchor" href="#คราฟต์กับแอ็กชันอื่นทำพร้อมกันไม่ได้" aria-hidden="true">#</a>คราฟต์กับแอ็กชันอื่นทำพร้อมกันไม่ได้ <span class="badge badge-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span> ใช้ได้</span></h2>
+<p>เริ่มแอ็กชันที่มีหลอดเวลาอื่น (เช่น เก็บของ ล้างตัว) ระหว่างที่รอคราฟต์ = การคราฟต์นั้นถูกยกเลิก วัตถุดิบไม่ถูกใช้ · <strong>การสร้างอัตโนมัติ</strong> ที่ฝากไว้บนโต๊ะงานช่างไม่เกี่ยว ทำงานต่อเอง · กฎเต็มดูที่ <a href="gathering.html#ทำแอ็กชันที่มีหลอดเวลาได้ทีละอย่าง">การเก็บของ</a></p>
+
+</article>
+<nav class="pager"><a class="prev" href="gathering.html"><small>← ก่อนหน้า</small>การเก็บของ</a><a class="next" href="tags.html"><small>ถัดไป →</small>คุณสมบัติของไอเทม</a></nav>
+</main>
+<aside class="toc" aria-label="ในหน้านี้"><p class="toc-title">ในหน้านี้</p><ul><li class="toc-l2"><a href="#ทำอะไรได้บ้าง">ทำอะไรได้บ้าง</a></li><li class="toc-l2"><a href="#วิธีคราฟต์">วิธีคราฟต์</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#ตำราเรียนสูตร">ตำราเรียนสูตร</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ตำราและสูตรฮาโลวีน">ตำราและสูตรฮาโลวีน</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#ตัวเลขหลัก">ตัวเลขหลัก</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ค่าประสบการณ์">ค่าประสบการณ์</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#โอกาสสำเร็จและล้มเหลว">โอกาสสำเร็จและล้มเหลว</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ตัวอย่าง">ตัวอย่าง</a></li><li class="toc-l3"><a href="#ค่าคราฟต์นับทุกแหล่ง">ค่าคราฟต์นับทุกแหล่ง</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#โอกาสความสำเร็จแบบไร้ที่ติ">โอกาสความสำเร็จแบบไร้ที่ติ</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#ฝากทำที่โต๊ะทำงาน">ฝากทำที่โต๊ะทำงาน</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#เอฟเฟกต์เมื่อของเสร็จ">เอฟเฟกต์เมื่อของเสร็จ</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ใครยกเลิกและรับของได้">ใครยกเลิกและรับของได้</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#สูตรฝากทำที่โต๊ะของแคมป์">สูตรฝากทำที่โต๊ะของแคมป์</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#แปรรูปวัตถุดิบ">แปรรูปวัตถุดิบ</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ถลุงแร่ได้โลหะ">ถลุงแร่ได้โลหะ</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#สกัดและขัดอัญมณี">สกัดและขัดอัญมณี</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#โอกาสแปรรูป">โอกาสแปรรูป</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l3"><a href="#ขัดโลหะด้วยเปลือกหอย">ขัดโลหะด้วยเปลือกหอย</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#คุณสมบัติที่ส่งต่อ">คุณสมบัติที่ส่งต่อ</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#ซ่อม">ซ่อม</a></li><li class="toc-l2"><a href="#สูตรที่ปรับตามชีต">สูตรที่ปรับตามชีต</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#สูตรที่ทำได้เพิ่มจากวัตถุดิบเฉพาะสายพันธุ์">สูตรที่ทำได้เพิ่มจากวัตถุดิบเฉพาะสายพันธุ์</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li><li class="toc-l2"><a href="#เคล็ดลับ">เคล็ดลับ</a></li><li class="toc-l2"><a href="#คราฟต์กับแอ็กชันอื่นทำพร้อมกันไม่ได้">คราฟต์กับแอ็กชันอื่นทำพร้อมกันไม่ได้</a> <span class="dot dot-live" title="ใช้ได้ — มีในเซิร์ฟแล้ว"><span aria-hidden="true">✓</span><span class="sr">ใช้ได้</span></span></li></ul></aside>
+</div>
+<footer class="footer"><p>เนื้อหาอ้างอิงจากโค้ดและข้อมูลของเซิร์ฟ · รูปเป็นของเกม Durango: Wild Lands ต้นฉบับ</p></footer>
+<script src="../assets/wiki.js?v=mvmlz2tn" defer></script>
+</body>
+</html>
