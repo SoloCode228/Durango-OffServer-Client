@@ -264,12 +264,12 @@
     }
   ],
   "launcher": {
-    "version": "1.4.0",
-    "version_code": 5,
-    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.4.0.apk",
+    "version": "1.5.0",
+    "version_code": 7,
+    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.5.0.apk",
     "mirrors": [],
-    "size": 765840,
-    "sha256": "50951f142f39c78c19a9629e51a4430aa52dafc760bded5f8ac8605059314738"
+    "size": 920385,
+    "sha256": "1c0f6d3eb08015161aee439b508d68e80f2b389fb4e02bb2d9dbcaecbe279b5d"
   },
   "min_launcher": 4,
   "servers_url": "https://raw.githubusercontent.com/ShuuuuShi/Durango-OffServer-Client/main/servers.json",
