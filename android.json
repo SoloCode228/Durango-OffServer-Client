@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-26T16:40:57+07:00",
+  "updated": "2026-10-27T12:00:00+07:00",
   "game": {
     "package": "com.durango.offserver",
     "version": "3.3.3",
@@ -12,6 +12,8 @@
         "mirrors": [],
         "size": 838691779,
         "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
         "version_code": 333
       },
       "armeabi-v7a": {
@@ -19,6 +21,8 @@
         "mirrors": [],
         "size": 838691779,
         "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
         "version_code": 333
       }
     }
@@ -264,12 +268,12 @@
     }
   ],
   "launcher": {
-    "version": "1.5.0",
-    "version_code": 7,
-    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.5.0.apk",
+    "version": "1.6.0",
+    "version_code": 8,
+    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.6.0.apk",
     "mirrors": [],
-    "size": 920385,
-    "sha256": "1c0f6d3eb08015161aee439b508d68e80f2b389fb4e02bb2d9dbcaecbe279b5d"
+    "size": 930383,
+    "sha256": "f560a2a3388f5c6f424bdc6640c7e406ee9f9100fc83057f71c56f1f82fda4bd"
   },
   "min_launcher": 4,
   "servers_url": "https://raw.githubusercontent.com/ShuuuuShi/Durango-OffServer-Client/main/servers.json",
