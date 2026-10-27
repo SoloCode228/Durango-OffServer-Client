@@ -13,7 +13,7 @@ if(acqData){
 const acqStates={
  project:['ตารางโปรเจกต์','OBT data'],legacy_shop:['ร้านค้าเกมเดิม · ไม่ยืนยันเปิดขาย','Original shop · sale unconfirmed'],
  legacy_reward:['รางวัลเกมเดิม · ไม่ยืนยันเปิดแจก','Original reward · claim unconfirmed'],legacy_handbook:['คู่มือเกมเดิม 2018','Original handbook · 2018'],
- description:['คำอธิบายไอเทม · ยังไม่มีจุดจับ','Item description · catch point unknown'],test:['ข้อมูลทดสอบ','Test data']
+ description:['คำอธิบายไอเทม · ยังไม่มีจุดจับ','Item description · catch point unknown'],test:['ข้อมูลทดสอบ','Test data'],event_catalog:['กิจกรรมปิด · ดูรางวัลล่วงหน้า','Inactive event · reward preview']
 };
 function acquisitionState(s){return s?.acquisition?.state||'project'}
 function acquisitionLabel(s){const state=acquisitionState(s);return L(...(acqStates[state]||acqStates.project))}
