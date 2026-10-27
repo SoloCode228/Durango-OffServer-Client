@@ -6,3 +6,5 @@
 .status-neutral,.deep-buff.neutral h3{color:var(--ink)}
 
 .character-top{display:block}.character-top .detail-image{margin-bottom:20px}
+
+.deep-rate-table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);font-size:13px;line-height:1.8}.deep-rate-table th,.deep-rate-table td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line)}.deep-rate-table th{background:#1D1929;color:var(--orange);font-weight:600}.deep-rate-table td:not(:first-child){white-space:nowrap;font-variant-numeric:tabular-nums}.deep-rate-table .rate-yellow{color:#F5C518}.deep-rate-table .rate-green{color:#a4d5aa}@media(max-width:540px){.deep-rate-table{font-size:11px}.deep-rate-table th,.deep-rate-table td{padding:10px 8px}}
