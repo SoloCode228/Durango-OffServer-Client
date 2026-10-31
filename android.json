@@ -1,33 +1,59 @@
 {
   "schema": 1,
-  "updated": "2026-10-27T12:00:00+07:00",
+  "updated": "2026-11-01T01:02:18+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.3",
-    "tag": "v3.3.3",
+    "version": "3.3.4",
+    "tag": "v3.3.4",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
         "mirrors": [],
-        "size": 838691779,
-        "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
-        "version_code": 333
+        "size": 843777693,
+        "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
+        "version_code": 334
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
         "mirrors": [],
-        "size": 838691779,
-        "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
-        "version_code": 333
+        "size": 843777693,
+        "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
+        "version_code": 334
       }
     }
   },
   "history": [
+    {
+      "package": "com.durango.offserver",
+      "version": "3.3.3",
+      "tag": "v3.3.3",
+      "min_sdk": 26,
+      "builds": {
+        "arm64-v8a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 838691779,
+          "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
+          "version_code": 333
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 838691779,
+          "sha256": "6a811dc5765c55e5a4f1ce09b025b7fc59edc88accb1074f9bccfbc68f950731",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.3/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "58b4afe64ed8d01685cdce4fa579ec7389f2e508daa94e8b6f4f551f2d079a11",
+          "version_code": 333
+        }
+      }
+    },
     {
       "package": "com.durango.offserver",
       "version": "3.3.1",
@@ -182,6 +208,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "date": "2026-11-01",
+      "title": "Durango:Renewal 3.3.4",
+      "body": "ไม่บังคับอัปเดต · หน้า Title ใหม่ · เตรียมระบบซีซั่น 2 แดนรอยแยก (ประตูรอยแยก · ร้าน K · กล้องส่องสัตว์ · เข็มทิศวาร์ป · ซีซั่นเลเวล) และศึกเสาแคลน — เปิดใช้เมื่อเซิร์ฟเปิดระบบ · แก้เกจเก็บของไม่ขึ้นหลังล็อกอินใหม่ · PC เปิด DurangoLauncher เกมอัปเดตเอง · Android อัปเดตผ่าน Durango Launcher",
+      "title_en": "Durango:Renewal 3.3.4",
+      "body_en": "Optional update · new title screen · groundwork for Season 2, the Rift (rift gate, K shop, creature scope, warp compass, season level) and clan pillar sieges — these turn on when the server enables them · fixed the gathering gauge missing after logging in again · PC: open DurangoLauncher and the game updates itself · Android: update through Durango Launcher"
+    },
     {
       "date": "2026-10-20",
       "title": "Dorangu:Renewal 3.2.4 · เปิด OBT",
