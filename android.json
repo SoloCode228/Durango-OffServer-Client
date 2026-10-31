@@ -1,33 +1,59 @@
 {
   "schema": 1,
-  "updated": "2026-11-01T01:02:18+07:00",
+  "updated": "2026-11-01T04:29:36+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.4",
-    "tag": "v3.3.4",
+    "version": "3.3.5",
+    "tag": "v3.3.5",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
         "mirrors": [],
-        "size": 843777693,
-        "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
-        "version_code": 334
+        "size": 843783677,
+        "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
+        "version_code": 335
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
         "mirrors": [],
-        "size": 843777693,
-        "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
-        "version_code": 334
+        "size": 843783677,
+        "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
+        "version_code": 335
       }
     }
   },
   "history": [
+    {
+      "package": "com.durango.offserver",
+      "version": "3.3.4",
+      "tag": "v3.3.4",
+      "min_sdk": 26,
+      "builds": {
+        "arm64-v8a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 843777693,
+          "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
+          "version_code": 334
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 843777693,
+          "sha256": "279559cd82dc61ff59bfb9c71b7c0cb1bf5e49e661c743cb43935fa6ac7cbb55",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.4/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "53ba1d695482fa79fa450aa66300b377b632e6c89fd84d858cb39589033fed36",
+          "version_code": 334
+        }
+      }
+    },
     {
       "package": "com.durango.offserver",
       "version": "3.3.3",
@@ -208,6 +234,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "date": "2026-11-01",
+      "title": "Durango:Renewal 3.3.5",
+      "body": "ไม่บังคับอัปเดต · ซ่อนปุ่มสกิลพิเศษเมื่อเซิร์ฟเวอร์ยังไม่เปิดระบบ · จัดปุ่มบนหน้าสกิลของ Android ให้พ้นช่องสกิล · PC เปิด DurangoLauncher เกมอัปเดตเอง · Android อัปเดตผ่าน Durango Launcher",
+      "title_en": "Durango:Renewal 3.3.5",
+      "body_en": "Optional update · hide the special skills button until the server enables the system · the Android skill screen button now sits beside the title, clear of the skill slots · PC: open DurangoLauncher and the game updates itself · Android: update through Durango Launcher"
+    },
     {
       "date": "2026-11-01",
       "title": "Durango:Renewal 3.3.4",
