@@ -1,0 +1,17 @@
+/* Ore page and ore section on item pages. Ore icons keep their real colour instead of the grey glyph filter; the outline keeps dark ones visible. */
+img.native-glyph[src*="icon_nat_mine_ore--"],img.native-glyph[src*="icon_nat_mine_jewel--"],img.native-glyph[src*="icon_nat_ore_jewel--"]{filter:drop-shadow(0 0 1px #D8D3E6)!important}
+.ore-read{padding:14px 18px;margin:0 0 18px}.ore-read strong{color:var(--ink);font-weight:500}.ore-read ul{margin:6px 0 0;padding-left:18px}
+.ore-search{width:100%;max-width:420px;padding:9px 12px;background:var(--k1);border:1px solid var(--k3);border-radius:6px;color:var(--ink);font:inherit;font-size:13px}
+.ore-group{margin-top:26px}.ore-group>h2{font-size:20px;margin:0 0 10px}
+.ore-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:12px;scroll-margin-top:20px}
+.ore-card header{display:flex;align-items:center;gap:10px;margin-bottom:8px}.ore-icon{width:36px;height:36px;object-fit:contain;flex:none;filter:drop-shadow(0 0 1px #D8D3E6)}
+.ore-card h3{font-size:17px;margin:0;font-weight:500}.ore-card h3 a{color:var(--ink);text-decoration:none}.ore-card h3 a:hover{color:var(--yellow)}
+.ore-facts{display:flex;flex-wrap:wrap;gap:6px 26px;margin:0 0 10px}.ore-facts div{display:flex;gap:8px;align-items:baseline}.ore-facts dt{font-size:12px;color:var(--muted)}.ore-facts dd{margin:0;font-size:13px;color:var(--ink)}.ore-facts small{color:var(--muted);font-size:11px}.ore-facts a{color:var(--purple-light)}
+.ore-note{font-size:13px;color:var(--yellow);margin:0 0 10px;line-height:1.7}
+.ore-form{padding-top:10px;border-top:1px solid var(--line);margin-top:10px}.ore-form h4{font-size:13px;font-weight:500;color:var(--dim);margin:0 0 8px}
+.ore-shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:10px}
+.ore-shots img{display:block;width:100%;height:118px;padding:8px;object-fit:contain;background:#5F6B54;border-radius:6px}
+.ore-islands>p{font-size:12px;color:var(--muted);margin:0 0 6px}.ore-none{color:var(--bad)!important}
+.ore-isl-list{display:flex;flex-wrap:wrap;gap:5px}.ore-isl{display:inline-block;padding:3px 9px;font-size:12px;line-height:1.6;background:var(--k2);border:1px solid var(--k3);border-radius:5px;color:var(--ink);text-decoration:none}.ore-isl small{color:var(--muted);font-size:11px;margin-left:3px}a.ore-isl:hover{border-color:var(--purple-light)}.ore-more{color:var(--purple-light);cursor:pointer;font:inherit;font-size:12px}.ore-isl-list:not(.open) .ore-extra{display:none}
+.ore-panel{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-top:20px}.ore-all{display:inline-block;margin-top:12px;font-size:13px;color:var(--purple-light)}
+@media(max-width:600px){.ore-card{padding:14px 12px}.ore-shots{grid-template-columns:repeat(2,minmax(0,1fr))}.ore-shots img{height:96px;padding:5px}.ore-facts{flex-direction:column}}
