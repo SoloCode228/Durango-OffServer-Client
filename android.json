@@ -1,33 +1,59 @@
 {
   "schema": 1,
-  "updated": "2026-11-01T04:29:36+07:00",
+  "updated": "2026-11-04T05:45:12+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.5",
-    "tag": "v3.3.5",
+    "version": "3.3.6",
+    "tag": "v3.3.6",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk",
         "mirrors": [],
-        "size": 843783677,
-        "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
-        "version_code": 335
+        "size": 842937129,
+        "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "13a5c36f2616e5212db6c73513747519111bdf693b0e1a8bdbbbfb90d405faf2",
+        "version_code": 336
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk",
         "mirrors": [],
-        "size": 843783677,
-        "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
-        "version_code": 335
+        "size": 842937129,
+        "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "13a5c36f2616e5212db6c73513747519111bdf693b0e1a8bdbbbfb90d405faf2",
+        "version_code": 336
       }
     }
   },
   "history": [
+    {
+      "package": "com.durango.offserver",
+      "version": "3.3.5",
+      "tag": "v3.3.5",
+      "min_sdk": 26,
+      "builds": {
+        "arm64-v8a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 843783677,
+          "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
+          "version_code": 335
+        },
+        "armeabi-v7a": {
+          "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk",
+          "mirrors": [],
+          "size": 843783677,
+          "sha256": "e684940bb21c8e2e09a060b688b28d62fc5b62c4afe22fb07bb3743cf082bfad",
+          "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.5/DurangoReborn.apk.layout.json.gz",
+          "layout_sha256": "c8d908dde0f6a12bf8387407fc8cd2547b8c5093a31fdeb4924e8f6b0e8381d6",
+          "version_code": 335
+        }
+      }
+    },
     {
       "package": "com.durango.offserver",
       "version": "3.3.4",
@@ -234,6 +260,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "title": "Durango:Renewal 3.3.6",
+      "title_en": "Durango:Renewal 3.3.6",
+      "date": "2026-11-04",
+      "body": "ตั้งค่าล็อกเป้าได้ 3 โหมด จำค่าเสียงหลังเปิดเกมใหม่ ดูตารางอันดับ 1v1 และ 3v3 ได้ ซ่อนหน้าซีซั่นและแถบ Season EXP ไว้ก่อน",
+      "body_en": "Three target lock modes, saved audio settings and separate 1v1 and 3v3 standings. The Season menu and HUD are hidden for now."
+    },
     {
       "date": "2026-11-01",
       "title": "Durango:Renewal 3.3.5",
