@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-07T07:25:40+07:00",
+  "updated": "2026-11-07T07:36:05+07:00",
   "game": {
     "package": "com.durango.offserver",
     "version": "3.3.6",
@@ -367,12 +367,12 @@
     }
   ],
   "launcher": {
-    "version": "1.8.0",
-    "version_code": 9,
-    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.8.0.apk",
+    "version": "1.8.1",
+    "version_code": 10,
+    "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.8.1.apk",
     "mirrors": [],
-    "size": 952257,
-    "sha256": "973a9c43ae2cc9e176e1ea3a8dfc2971692de0680d9a9c98f077dd7e19c2304f"
+    "size": 952244,
+    "sha256": "fcee3314dc33900b814ea448edd8d5c22890fb5cc3f91fa28c6cf7c91b746ef6"
   },
   "min_launcher": 4,
   "servers_url": "https://raw.githubusercontent.com/SoloCode228/Durango-OffServer-Client/main/servers.json",
