@@ -1,33 +1,45 @@
 {
   "schema": 1,
-  "updated": "2026-11-07T07:36:05+07:00",
+  "updated": "2026-11-08T02:46:13+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.6",
-    "tag": "v3.3.6",
+    "version": "3.3.7",
+    "tag": "v3.3.7",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk",
         "mirrors": [],
-        "size": 842937129,
-        "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "13a5c36f2616e5212db6c73513747519111bdf693b0e1a8bdbbbfb90d405faf2",
-        "version_code": 336
+        "size": 858572367,
+        "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "f444a3dba71d074b0dc2ac218203ae84f8eacad76c2385e48d2c7f017bdaa251",
+        "version_code": 337
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk",
         "mirrors": [],
-        "size": 842937129,
-        "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.6/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "13a5c36f2616e5212db6c73513747519111bdf693b0e1a8bdbbbfb90d405faf2",
-        "version_code": 336
+        "size": 858572367,
+        "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "f444a3dba71d074b0dc2ac218203ae84f8eacad76c2385e48d2c7f017bdaa251",
+        "version_code": 337
       }
     }
   },
   "history": [
+    {
+      "version": "3.3.6",
+      "abi": "arm64-v8a",
+      "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
+      "version_code": 336
+    },
+    {
+      "version": "3.3.6",
+      "abi": "armeabi-v7a",
+      "sha256": "c7c504753744cc703f16b661aee6bf80e3764e91c2b0744c35b61e316f494c37",
+      "version_code": 336
+    },
     {
       "package": "com.durango.offserver",
       "version": "3.3.5",
@@ -260,6 +272,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "title": "Durango:Renewal 3.3.7",
+      "title_en": "Durango:Renewal 3.3.7",
+      "date": "2026-11-08",
+      "body": "ต้องอัปเดตตัวเกม PC และ Android · พรีเซ็ตอุปกรณ์ 9 ชุดและแฟชั่น 9 ชุด ใส่ชุดธรรมดาในช่องแฟชั่นเพื่อแสดงรูปลักษณ์ ค่าพลังยังคิดจากชุดหลัก · โต๊ะปรุงสารเคมีพร้อมถุงมือและหน้ากากกันสารเคมี · เลื่อยไฟฟ้าและที่พ่นน้ำใช้แบตเตอรี่ · เปิดเกาะเถ้าขาว เลเวล 65 ทั้งเกาะ ตัวละครเลเวล 60 ขึ้นไปล่องเรือไปได้ · อาหาร 4 หมู่ ตั้งแต่เลเวล 20 ถ้าไม่กินหมู่ใดนานจะขาดอาหารและค่าพลังลด กินจนกลับถึงครึ่งหลอดจึงหาย ไม่มีผลในแรงค์",
+      "body_en": "Required update for PC and Android. 9 gear and 9 fashion presets, ordinary clothes in fashion slots change only your look. Chemistry table with chemical gloves and mask. The chainsaw and the sprinkler run on batteries. White Ash Island opens, level 65 across the whole island, for characters of level 60 or higher. Four food groups from level 20: skip a group for too long and you become malnourished and lose stats; eat until the bar is back to half to recover. No effect in ranked."
+    },
     {
       "title": "Durango:Renewal 3.3.6",
       "title_en": "Durango:Renewal 3.3.6",
