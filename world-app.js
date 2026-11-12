@@ -8,7 +8,7 @@ for(const s of WORLDDB.sources.filter(s=>s.id.startsWith('native-gather-'))){con
 for(const [id,row]of Object.entries(DEEPDB.items))row.sources=row.sources.filter(sid=>!worldGatherIds.has(sid)&&sourceMap.get(sid)?.items.includes(id));
 // Supersede base-template sightings with the captured generated map's native spawn table.
 for(const a of Object.values(DEEPDB.animals))a.spawns=[];
-for(const m of Object.values(WORLDDB.maps))for(const a of m.animals){const row=DEEPDB.animals[String(a.id)];if(row)row.spawns.push({region:m.id,terrain:m.terrain,template:m.template,method:'restore',levels:a.levels,behavior:a.behavior,boss:a.boss,elite:a.elite,generated:m.generated})}
+for(const m of Object.values(WORLDDB.maps))for(const a of m.animals){const row=DEEPDB.animals[String(a.id)];if(row)row.spawns.push({region:m.id,terrain:m.terrain,template:m.template,method:a.method||'restore',levels:a.levels,behavior:a.behavior,boss:a.boss,elite:a.elite,generated:m.generated})}
 const worldIsland=id=>islandMap.get(id)||{id,name:{th:id,en:id},icon:'assets/explore_map_unstable_island.webp'};
 const worldMapHref=id=>'#/maps/'+encodeURIComponent(id);
 const worldCacheHref=id=>'#/caches/'+encodeURIComponent(id);
