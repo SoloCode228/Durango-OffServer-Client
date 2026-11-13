@@ -1,33 +1,45 @@
 {
   "schema": 1,
-  "updated": "2026-11-08T02:46:13+07:00",
+  "updated": "2026-11-13T22:29:50+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.7",
-    "tag": "v3.3.7",
+    "version": "3.3.8",
+    "tag": "v3.3.8",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk",
         "mirrors": [],
-        "size": 858572367,
-        "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "f444a3dba71d074b0dc2ac218203ae84f8eacad76c2385e48d2c7f017bdaa251",
-        "version_code": 337
+        "size": 858576411,
+        "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "beafc36e8f2fa52dafc36e46b29165b7b04c7287a20b32663b780d8a86fbf307",
+        "version_code": 338
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk",
         "mirrors": [],
-        "size": 858572367,
-        "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.7/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "f444a3dba71d074b0dc2ac218203ae84f8eacad76c2385e48d2c7f017bdaa251",
-        "version_code": 337
+        "size": 858576411,
+        "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "beafc36e8f2fa52dafc36e46b29165b7b04c7287a20b32663b780d8a86fbf307",
+        "version_code": 338
       }
     }
   },
   "history": [
+    {
+      "version": "3.3.7",
+      "abi": "arm64-v8a",
+      "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
+      "version_code": 337
+    },
+    {
+      "version": "3.3.7",
+      "abi": "armeabi-v7a",
+      "sha256": "4974447ae7fca62688f3c8fb5186d4a19ee1d3edef5a64cdca7faf605baf4b59",
+      "version_code": 337
+    },
     {
       "version": "3.3.6",
       "abi": "arm64-v8a",
@@ -272,6 +284,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "title": "Durango:Renewal 3.3.8",
+      "title_en": "Durango:Renewal 3.3.8",
+      "date": "2026-11-13",
+      "body": "แก้แมพโหลดไม่ครบ: ถ้าพื้นรอบตัวโหลดไม่ครบภายใน 15 วินาที ตัวเกมจะขอข้อมูลแมพใหม่เอง ไม่ต้องออกเข้าเกมใหม่ · อัปเดตผ่านรันเช่อได้ทั้ง PC และ Android · ตัวเกม 3.3.7 ยังเข้าเล่นได้ แต่จะไม่ได้ตัวแก้นี้",
+      "body_en": "Map loading fix: if the ground around you has not finished loading within 15 seconds, the game now asks for the map data again by itself, so you no longer need to relog. Update through the launcher on PC and Android. Client 3.3.7 can still play but does not have this fix."
+    },
     {
       "title": "Durango:Renewal 3.3.7",
       "title_en": "Durango:Renewal 3.3.7",
