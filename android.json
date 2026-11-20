@@ -1,33 +1,45 @@
 {
   "schema": 1,
-  "updated": "2026-11-13T22:29:50+07:00",
+  "updated": "2026-11-20T22:26:29+07:00",
   "game": {
     "package": "com.durango.offserver",
-    "version": "3.3.8",
-    "tag": "v3.3.8",
+    "version": "3.3.9",
+    "tag": "v3.3.9",
     "min_sdk": 26,
     "builds": {
       "arm64-v8a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.9/DurangoReborn.apk",
         "mirrors": [],
-        "size": 858576411,
-        "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "beafc36e8f2fa52dafc36e46b29165b7b04c7287a20b32663b780d8a86fbf307",
-        "version_code": 338
+        "size": 867738412,
+        "sha256": "c01d46ba321a5fec442c9627733d7d6474b5b5c8a40498794063a364dc1acdcf",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.9/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "d6d7ff40d17c7ca848ad0349afa3f2cce9f6e268339211cf4c8b81f068de94c2",
+        "version_code": 339
       },
       "armeabi-v7a": {
-        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk",
+        "url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.9/DurangoReborn.apk",
         "mirrors": [],
-        "size": 858576411,
-        "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
-        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.8/DurangoReborn.apk.layout.json.gz",
-        "layout_sha256": "beafc36e8f2fa52dafc36e46b29165b7b04c7287a20b32663b780d8a86fbf307",
-        "version_code": 338
+        "size": 867738412,
+        "sha256": "c01d46ba321a5fec442c9627733d7d6474b5b5c8a40498794063a364dc1acdcf",
+        "layout_url": "https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/v3.3.9/DurangoReborn.apk.layout.json.gz",
+        "layout_sha256": "d6d7ff40d17c7ca848ad0349afa3f2cce9f6e268339211cf4c8b81f068de94c2",
+        "version_code": 339
       }
     }
   },
   "history": [
+    {
+      "version": "3.3.8",
+      "abi": "arm64-v8a",
+      "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
+      "version_code": 338
+    },
+    {
+      "version": "3.3.8",
+      "abi": "armeabi-v7a",
+      "sha256": "642fa25f994c13fe8724f2214f2d930c45c31bf5e4cd7c085db13a97ff001196",
+      "version_code": 338
+    },
     {
       "version": "3.3.7",
       "abi": "arm64-v8a",
@@ -284,6 +296,13 @@
     "gles_good": "3.0"
   },
   "news": [
+    {
+      "title": "Durango 3.3.9",
+      "title_en": "Durango 3.3.9",
+      "date": "2026-11-20",
+      "body": "ตัวเกมเดียวเข้าได้สองเซิฟ: หน้าเลือกเซิร์ฟเวอร์มีทั้ง Durango Classic และ Dorangu:Renewal · แก้โมเดลบางตัวไม่ขึ้นบน PC · อัปเดตผ่านรันเช่อได้ทั้ง PC และ Android · ตัวเกม 3.3.8 ยังเข้าเล่น Renewal ได้",
+      "body_en": "One game for both servers: the server list now has Durango Classic and Dorangu:Renewal. Also fixes some models not showing on PC. Update through the launcher on PC and Android. Client 3.3.8 can still play Renewal."
+    },
     {
       "title": "Durango:Renewal 3.3.8",
       "title_en": "Durango:Renewal 3.3.8",
