@@ -1,5 +1,6 @@
 {
   "schema": 1,
+  "community": "https://classic.solocode.co",
   "updated": "2026-11-20T22:26:29+07:00",
   "game": {
     "package": "com.durango.offserver",
