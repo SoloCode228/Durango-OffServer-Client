@@ -9,6 +9,11 @@
       "name": "[5BD68A][OBT][-] [B8A4FF]Supporter[-]",
       "gateway": "http://201.18.211.139:8292",
       "mode": "renewal"
+    },
+    {
+      "name": "[7FC8FF]Durango Classic[-]",
+      "gateway": "https://play-classic.solocode.co/gw",
+      "mode": "classic"
     }
   ]
 }
