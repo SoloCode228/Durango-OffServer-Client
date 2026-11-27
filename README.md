@@ -53,7 +53,15 @@
 - `portal/catalog.js` holds all the page logic and never touches the DOM. `portal/app.js` draws the page with `textContent` only.
 - Tests (Node 20 or newer): `node --test "portal/test/*.test.js"`.
 - Local preview: serve the repo root (`python -m http.server 8466 --bind 127.0.0.1`), then open `http://127.0.0.1:8466/portal/?catalog=/servers-v3.json`. `?catalog=` only works on localhost.
-- Deploying to 76.13 happens only on the owner's order. Do not touch the nginx config:
+- Deploying to 76.13 happens only on the owner's order. Do not touch the nginx config.
+- **Do not deploy until the account pages answer 200.** The «สมัคร» and «เข้าสู่ระบบ» buttons link to `<id_service.web>/signup` and `<id_service.web>/login` from `servers-v3.json`. On 27 Nov 2026 both return 404 on `https://play.dorangu.tech/id`; the central ID host is chosen in plan 03 Task 11. Check from the repo root, and deploy only when both lines print `200`:
+
+```bash
+web=$(python -c "import json; print(json.load(open('servers-v3.json'))['id_service']['web'].rstrip('/'))"); for p in signup login; do echo "$p $(curl -sL -o /dev/null -w '%{http_code}' "$web/$p")"; done
+```
+
+- The same-origin `servers-v3.json` is a snapshot from deploy time. After the list on `main` changes (for example a server goes to `maintenance`), redeploy, or re-copy only that file (`scp servers-v3.json root@classic.solocode.co:/var/www/solocode-portal/`, also on the owner's order). Otherwise players see the old list whenever raw GitHub is unreachable.
+- Deploy:
 
 ```bash
 # stage: portal/ without test/, plus the root servers-v3.json as the same-origin fallback
