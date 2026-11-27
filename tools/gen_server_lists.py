@@ -283,12 +283,23 @@ def dump(obj: dict) -> str:
     return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
 
 
-def _outputs(catalog: dict) -> dict[str, bytes]:
-    """File name -> exact bytes of each generated file."""
-    return {
-        V2_FILE: dump(build_v2(catalog)).encode("utf-8"),
-        V1_FILE: dump(build_v1(catalog)).encode("utf-8"),
-    }
+def _generated(catalog: dict) -> dict[str, dict]:
+    """File name -> content of each generated file."""
+    return {V2_FILE: build_v2(catalog), V1_FILE: build_v1(catalog)}
+
+
+def output_warnings(generated: dict[str, dict]) -> list[str]:
+    """Non-fatal problems of the generated lists: an empty list, or two
+    servers-v2.json rows that a player could not tell apart by name."""
+    warnings = []
+    for name, obj in generated.items():
+        if not obj["servers"]:
+            warnings.append(f"{name} would have zero rows; old clients would show no server")
+    names = [row["name"] for row in generated[V2_FILE]["servers"]]
+    for row_name in dict.fromkeys(names):
+        if names.count(row_name) > 1:
+            warnings.append(f"{V2_FILE} has {names.count(row_name)} rows named {row_name!r}")
+    return warnings
 
 
 def _read_bytes(path: str) -> bytes | None:
@@ -318,12 +329,14 @@ def main(argv: list[str]) -> int:
     try:
         catalog = load_catalog(os.path.join(args.root, CATALOG_FILE))
         warnings = validate(catalog)
-        outputs = _outputs(catalog)
+        generated = _generated(catalog)
     except CatalogError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
+    warnings += output_warnings(generated)
     for w in warnings:
         print(f"warning: {w}", file=sys.stderr)
+    outputs = {name: dump(obj).encode("utf-8") for name, obj in generated.items()}
 
     if args.check:
         stale = [name for name, data in outputs.items()

@@ -472,6 +472,54 @@ class MainTests(unittest.TestCase):
         self.assertEqual(read_bytes(self.path("servers-v2.json")),
                          read_testdata("servers-v2.cd8152b.json").encode("utf-8"))
 
+    def write_v3(self, catalog):
+        with open(self.path("servers-v3.json"), "w", encoding="utf-8", newline="") as f:
+            json.dump(catalog, f, ensure_ascii=False)
+
+    def frozen(self):
+        return json.loads(read_bytes(FROZEN_V3).decode("utf-8"))
+
+    def test_frozen_catalog_prints_nothing(self):
+        self.copy_v3()
+        for argv in (["--root", self.root], ["--root", self.root, "--check"]):
+            with self.subTest(argv=argv):
+                self.assertEqual(run_main(argv), (0, ""))
+
+    def test_zero_rows_warns(self):
+        cases = {
+            "renewal hidden": ({"renewal"}, ["servers.json"]),
+            "all hidden": ({"renewal", "classic"}, ["servers-v2.json", "servers.json"]),
+        }
+        for label, (hide, files) in cases.items():
+            with self.subTest(label):
+                c = self.frozen()
+                for server in c["servers"]:
+                    if server["id"] in hide:
+                        server["status"] = "hidden"
+                self.write_v3(c)
+                code, err = run_main(["--root", self.root])
+                self.assertEqual(code, 0, err)
+                lines = err.splitlines()
+                self.assertEqual(len(lines), len(files), err)
+                for line, name in zip(lines, files):
+                    self.assertTrue(line.startswith("warning: "), err)
+                    self.assertIn(name + " ", line)
+                    self.assertIn("zero rows", line)
+
+    def test_duplicate_v2_names_warn(self):
+        c = self.frozen()
+        twin = extra_server("classic-2", "https://classic-2.invalid/gw")
+        twin["lanes"][0]["legacy_name"] = "[7FC8FF]Durango Classic[-]"
+        c["servers"].append(twin)
+        self.write_v3(c)
+        code, err = run_main(["--root", self.root])
+        self.assertEqual(code, 0, err)
+        self.assertTrue(err.startswith("warning: "), err)
+        self.assertEqual(len(err.splitlines()), 1, err)
+        self.assertIn("[7FC8FF]Durango Classic[-]", err)
+        self.assertIn("servers-v2.json", err)
+        self.assertIn("2 rows", err)
+
     def test_missing_catalog_writes_nothing(self):
         code, err = run_main(["--root", self.root])
         self.assertEqual(code, 1)
