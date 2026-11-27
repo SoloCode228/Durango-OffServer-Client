@@ -45,3 +45,20 @@
 - To have git run that check on every commit, run once per clone: `git config core.hooksPath tools/hooks`.
 - Tests: `python -m unittest tools/test_gen_server_lists.py -v`.
 - A push to `main` reaches players at once: clients and launchers read these files from `main`.
+
+## Portal (solocode.co)
+
+- `portal/` is the source of the solocode.co front page: a server picker with no build step and no npm.
+- It reads `servers-v3.json` from raw GitHub (`main`). If that fails it falls back to the copy deployed next to the page.
+- `portal/catalog.js` holds all the page logic and never touches the DOM. `portal/app.js` draws the page with `textContent` only.
+- Tests (Node 20 or newer): `node --test "portal/test/*.test.js"`.
+- Local preview: serve the repo root (`python -m http.server 8466 --bind 127.0.0.1`), then open `http://127.0.0.1:8466/portal/?catalog=/servers-v3.json`. `?catalog=` only works on localhost.
+- Deploying to 76.13 happens only on the owner's order. Do not touch the nginx config:
+
+```bash
+# stage: portal/ without test/, plus the root servers-v3.json as the same-origin fallback
+rm -rf /tmp/portal-stage && mkdir /tmp/portal-stage && cp -r portal/. /tmp/portal-stage/ && rm -rf /tmp/portal-stage/test && cp servers-v3.json /tmp/portal-stage/
+ssh root@classic.solocode.co 'cp -a /var/www/solocode-portal /var/www/solocode-portal.bak-$(date +%Y%m%d-%H%M)'
+scp -r /tmp/portal-stage/. root@classic.solocode.co:/var/www/solocode-portal/
+# rollback: ssh root@classic.solocode.co 'rsync -a --delete /var/www/solocode-portal.bak-<stamp>/ /var/www/solocode-portal/'
+```
