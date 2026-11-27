@@ -88,21 +88,42 @@ def validate(catalog: dict) -> list[str]:
     return warnings
 
 
+class _StrictJSONError(ValueError):
+    """JSON that Python accepts but the JS and C# readers do not."""
+
+
+def _reject_constant(literal: str):
+    raise _StrictJSONError(f"{literal} is not valid JSON")
+
+
+def _reject_duplicate_keys(pairs: list) -> dict:
+    obj = {}
+    for key, value in pairs:
+        if key in obj:
+            raise _StrictJSONError(f"duplicate key {key!r} in one object")
+        obj[key] = value
+    return obj
+
+
 def load_catalog(path: str) -> dict:
     """Read a UTF-8 servers-v3.json, validate it, and return it.
 
     A file that cannot be read, is not UTF-8, or is not valid JSON raises
-    CatalogError naming the path.
+    CatalogError naming the path. So do NaN/Infinity and duplicate keys,
+    which Python's json accepts but other readers of the file do not.
     """
     try:
         with open(path, encoding="utf-8") as f:
-            catalog = json.load(f)
+            catalog = json.load(f, parse_constant=_reject_constant,
+                                object_pairs_hook=_reject_duplicate_keys)
     except OSError as e:
         raise CatalogError(f"{path}: cannot read: {e}") from e
     except UnicodeDecodeError as e:
         raise CatalogError(f"{path}: not UTF-8: {e}") from e
     except json.JSONDecodeError as e:
         raise CatalogError(f"{path}: not valid JSON: {e}") from e
+    except _StrictJSONError as e:
+        raise CatalogError(f"{path}: {e}") from e
     validate(catalog)
     return catalog
 

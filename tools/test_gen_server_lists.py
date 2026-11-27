@@ -130,6 +130,47 @@ class ValidateTests(unittest.TestCase):
         self.assertEqual(g.validate(c), [])
 
 
+class LoadTests(unittest.TestCase):
+    """load_catalog is as strict as the JS and C# readers of servers-v3.json."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.file = os.path.join(self._tmp.name, "servers-v3.json")
+
+    def load_text(self, text):
+        with open(self.file, "w", encoding="utf-8", newline="") as f:
+            f.write(text)
+        return g.load_catalog(self.file)
+
+    def test_nan_and_infinity_rejected(self):
+        for literal in ("NaN", "Infinity", "-Infinity"):
+            with self.subTest(literal=literal):
+                # In an unknown field, so only the parser can catch it.
+                text = json.dumps(FIXTURE, ensure_ascii=False).replace('{"schema": 3', '{"x": ' + literal + ', "schema": 3', 1)
+                self.assertIn(literal, text)
+                with self.assertRaises(g.CatalogError) as cm:
+                    self.load_text(text)
+                self.assertIn("servers-v3.json", str(cm.exception))
+                self.assertIn(literal, str(cm.exception))
+
+    def test_duplicate_keys_rejected(self):
+        cases = {
+            "top level": json.dumps(FIXTURE, ensure_ascii=False).replace('{"schema": 3', '{"schema": 3, "schema": 3', 1),
+            "in a lane": json.dumps(FIXTURE, ensure_ascii=False).replace(
+                '"gateway": "http://127.0.0.1:8290"', '"gateway": "http://127.0.0.1:8290", "gateway": "http://x.invalid"', 1),
+        }
+        for where, text in cases.items():
+            with self.subTest(where=where):
+                with self.assertRaises(g.CatalogError) as cm:
+                    self.load_text(text)
+                self.assertIn("servers-v3.json", str(cm.exception))
+                self.assertIn("duplicate", str(cm.exception))
+
+    def test_fixture_text_loads(self):
+        self.assertEqual(self.load_text(json.dumps(FIXTURE, ensure_ascii=False)), FIXTURE)
+
+
 def read_testdata(name):
     with open(os.path.join(TESTDATA, name), encoding="utf-8", newline="") as f:
         return f.read()
