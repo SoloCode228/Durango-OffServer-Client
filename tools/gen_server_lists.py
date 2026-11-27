@@ -7,6 +7,7 @@ servers.json from it (contract S2). Importing it has no side effects.
     python tools/gen_server_lists.py --check    # exit 1 if either file is out of date
 """
 import argparse
+import datetime
 import json
 import os
 import re
@@ -16,6 +17,9 @@ SCHEMA = 3
 SERVER_ID_RE = re.compile(r"^[a-z0-9-]{2,32}$")
 LANE_ID_RE = re.compile(r"^[a-z0-9-]{1,32}$")
 KNOWN_RULES = ("classic", "renewal")
+KNOWN_STATUS = ("open", "soon", "maintenance", "hidden")
+KNOWN_ACCESS = ("all", "supporter")
+URL_RE = re.compile(r"https?://\S+")  # used with fullmatch
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG_FILE = "servers-v3.json"
@@ -33,6 +37,79 @@ def _check_id(value, pattern, what):
     return value
 
 
+def _is_url(value) -> bool:
+    return isinstance(value, str) and URL_RE.fullmatch(value) is not None
+
+
+def _check_optional_str(obj: dict, key: str, what: str):
+    if key in obj and not isinstance(obj[key], str):
+        raise CatalogError(f"{what}.{key} must be a string, got {obj[key]!r}")
+
+
+def _check_id_service(catalog: dict):
+    ids = catalog.get("id_service")
+    if not isinstance(ids, dict):
+        raise CatalogError(f"id_service must be an object, got {ids!r}")
+    for key in ("api", "web"):
+        if not _is_url(ids.get(key)):
+            raise CatalogError(f"id_service.{key} must be an http(s) URL, got {ids.get(key)!r}")
+    server = ids.get("server")
+    if not isinstance(server, str) or not server:
+        raise CatalogError(f"id_service.server must be a non-empty string, got {server!r}")
+
+
+def _check_opens_at(value, where: str):
+    """S1: ISO 8601 with a UTC offset. "Z" is accepted on every Python 3.10+."""
+    parsed = None
+    if isinstance(value, str):
+        text = value[:-1] + "+00:00" if value.endswith("Z") else value
+        try:
+            parsed = datetime.datetime.fromisoformat(text)
+        except ValueError:
+            parsed = None
+    if parsed is None or parsed.utcoffset() is None:
+        raise CatalogError(f"{where}: opens_at must be ISO 8601 with a UTC offset, got {value!r}")
+
+
+def _check_server_extras(server: dict, sid: str):
+    """Optional server fields that S1 readers use: fatal when present but malformed."""
+    where = f"server {sid!r}"
+    _check_optional_str(server["name"], "en", f"{where}: name")
+    if "tagline" in server:
+        tagline = server["tagline"]
+        if not isinstance(tagline, dict) or not all(isinstance(v, str) for v in tagline.values()):
+            raise CatalogError(f"{where}: tagline must be an object of strings, got {tagline!r}")
+    if "links" in server:
+        links = server["links"]
+        if not isinstance(links, dict):
+            raise CatalogError(f"{where}: links must be an object, got {links!r}")
+        for key, url in links.items():
+            if not _is_url(url):
+                raise CatalogError(f"{where}: links.{key} must be an http(s) URL, got {url!r}")
+    if "opens_at" in server:
+        _check_opens_at(server["opens_at"], where)
+
+
+def _check_lane_name(lane: dict, where: str):
+    if "name" not in lane:
+        return
+    name = lane["name"]
+    if not isinstance(name, dict):
+        raise CatalogError(f"{where}: name must be an object, got {name!r}")
+    _check_optional_str(name, "th", f"{where}: name")
+    _check_optional_str(name, "en", f"{where}: name")
+
+
+def _check_gateway(server_id: str, lane: dict) -> str:
+    gateway = lane.get("gateway")
+    if not _is_url(gateway):
+        raise CatalogError(
+            f"server {server_id!r} lane {lane.get('id')!r} needs a gateway that is an http(s) URL, "
+            f"got {gateway!r}"
+        )
+    return gateway
+
+
 def validate(catalog: dict) -> list[str]:
     """Check catalog against S1.
 
@@ -45,6 +122,7 @@ def validate(catalog: dict) -> list[str]:
     schema = catalog.get("schema")
     if type(schema) is not int or schema != SCHEMA:
         raise CatalogError(f"schema must be {SCHEMA}, got {schema!r}")
+    _check_id_service(catalog)
     servers = catalog.get("servers")
     if not isinstance(servers, list):
         raise CatalogError("servers must be a list")
@@ -67,9 +145,17 @@ def validate(catalog: dict) -> list[str]:
         if type(order) is not int:
             raise CatalogError(f"server {sid!r}: order must be an int, got {order!r}")
 
+        _check_server_extras(server, sid)
+
         rules = server.get("rules")
         if rules not in KNOWN_RULES:
             warnings.append(f"server {sid!r}: unknown rules {rules!r}; readers hide this server")
+        status = server.get("status")
+        if status not in KNOWN_STATUS:
+            warnings.append(
+                f"server {sid!r}: status {status!r} is not one of {'|'.join(KNOWN_STATUS)}; "
+                "readers treat it as hidden"
+            )
 
         lanes = server.get("lanes")
         if not isinstance(lanes, list) or not lanes:
@@ -82,9 +168,14 @@ def validate(catalog: dict) -> list[str]:
             if lid in seen_lanes:
                 raise CatalogError(f"server {sid!r} has duplicate lane id {lid!r}")
             seen_lanes.add(lid)
-            gateway = lane.get("gateway")
-            if not isinstance(gateway, str) or not gateway:
-                raise CatalogError(f"server {sid!r} lane {lid!r} needs a gateway")
+            _check_gateway(sid, lane)
+            _check_lane_name(lane, f"server {sid!r} lane {lid!r}")
+            access = lane.get("access")
+            if access not in KNOWN_ACCESS:
+                warnings.append(
+                    f"server {sid!r} lane {lid!r}: access {access!r} is not one of {'|'.join(KNOWN_ACCESS)}; "
+                    "readers treat it as supporter"
+                )
     return warnings
 
 
@@ -166,9 +257,7 @@ def _rows(catalog: dict, with_mode: bool, rules: tuple[str, ...]) -> dict:
         if server["rules"] not in rules:
             continue
         for lane in server["lanes"]:
-            gateway = lane.get("gateway")
-            if not isinstance(gateway, str) or not gateway:
-                raise CatalogError(f"server {server['id']!r} lane {lane['id']!r} needs a gateway")
+            gateway = _check_gateway(server["id"], lane)
             row = {"name": _row_name(server, lane), "gateway": gateway}
             if with_mode:
                 row["mode"] = server["rules"]

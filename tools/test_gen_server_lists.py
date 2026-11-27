@@ -26,6 +26,11 @@ FROZEN_V3 = os.path.join(TESTDATA, "servers-v3.cd8152b.json")
 # A small valid v3 catalog (rules of S1) that each test mutates.
 FIXTURE = {
     "schema": 3,
+    "id_service": {
+        "api": "https://id.example.invalid/api/game",
+        "server": "CloseBeta",
+        "web": "https://id.example.invalid/id",
+    },
     "servers": [
         {
             "id": "renewal",
@@ -121,6 +126,129 @@ class ValidateTests(unittest.TestCase):
             g.validate(c)
         self.assertIn("gateway", str(cm.exception))
         self.assertIn("supporter", str(cm.exception))
+
+    def test_status_missing_or_unknown_is_warning(self):
+        for status in (None, "Open", "closed", 1):
+            with self.subTest(status=status):
+                c = fixture()
+                if status is None:
+                    del c["servers"][1]["status"]
+                else:
+                    c["servers"][1]["status"] = status
+                warnings = g.validate(c)
+                self.assertEqual(len(warnings), 1, warnings)
+                self.assertIn("classic", warnings[0])
+                self.assertIn("status", warnings[0])
+        for status in ("open", "soon", "maintenance", "hidden"):
+            with self.subTest(status=status):
+                c = fixture()
+                c["servers"][1]["status"] = status
+                self.assertEqual(g.validate(c), [])
+
+    def test_lane_access_unknown_is_warning(self):
+        for access in (None, "Supporter", "everyone", True):
+            with self.subTest(access=access):
+                c = fixture()
+                lane = c["servers"][0]["lanes"][1]
+                if access is None:
+                    del lane["access"]
+                else:
+                    lane["access"] = access
+                warnings = g.validate(c)
+                self.assertEqual(len(warnings), 1, warnings)
+                self.assertIn("renewal", warnings[0])
+                self.assertIn("supporter", warnings[0])
+                self.assertIn("access", warnings[0])
+
+    def test_gateway_must_be_http_url(self):
+        for gateway in (" ", "168.222.21.53:8290", "ftp://example.invalid", "http://", "http://a b",
+                        "http://example.invalid\n", None, 8290):
+            with self.subTest(gateway=gateway):
+                c = fixture()
+                c["servers"][0]["lanes"][1]["gateway"] = gateway
+                with self.assertRaises(g.CatalogError) as cm:
+                    g.validate(c)
+                self.assertIn("gateway", str(cm.exception))
+                self.assertIn("renewal", str(cm.exception))
+                self.assertIn("supporter", str(cm.exception))
+
+    def assert_fatal(self, mutate, *words):
+        c = fixture()
+        mutate(c)
+        with self.assertRaises(g.CatalogError) as cm:
+            g.validate(c)
+        for word in words:
+            self.assertIn(word, str(cm.exception))
+
+    def test_server_name_en_and_tagline(self):
+        def set_(key, value):
+            return lambda c: c["servers"][1].__setitem__(key, value)
+        cases = {
+            "name.en not str": (lambda c: c["servers"][1]["name"].__setitem__("en", 5), "name.en"),
+            "tagline not object": (set_("tagline", "hi"), "tagline"),
+            "tagline value not str": (set_("tagline", {"th": "ok", "en": None}), "tagline"),
+        }
+        for label, (mutate, word) in cases.items():
+            with self.subTest(label):
+                self.assert_fatal(mutate, "classic", word)
+        c = fixture()
+        c["servers"][1]["name"]["en"] = "Classic"
+        c["servers"][1]["tagline"] = {"th": "ไทย", "en": "English"}
+        self.assertEqual(g.validate(c), [])
+
+    def test_links_must_be_http_urls(self):
+        for links in ("https://example.invalid", ["https://example.invalid"],
+                      {"site": "example.invalid"}, {"site": 5}, {"play_web": ""}):
+            with self.subTest(links=links):
+                self.assert_fatal(lambda c: c["servers"][1].__setitem__("links", links), "classic", "links")
+        c = fixture()
+        c["servers"][1]["links"] = {"site": "https://example.invalid", "play_web": "http://example.invalid/play"}
+        self.assertEqual(g.validate(c), [])
+
+    def test_opens_at_needs_iso_with_offset(self):
+        for opens_at in ("2026-11-25", "2026-11-25T00:00:00", "soon", "", 1764003600, None):
+            with self.subTest(opens_at=opens_at):
+                self.assert_fatal(lambda c: c["servers"][1].__setitem__("opens_at", opens_at), "classic", "opens_at")
+        for opens_at in ("2026-11-25T00:00:00+07:00", "2026-11-24T17:00:00+00:00", "2026-11-24T17:00:00Z"):
+            with self.subTest(opens_at=opens_at):
+                c = fixture()
+                c["servers"][1]["opens_at"] = opens_at
+                self.assertEqual(g.validate(c), [])
+
+    def test_id_service_required(self):
+        def id_service(**changes):
+            def mutate(c):
+                for key, value in changes.items():
+                    if value is None:
+                        del c["id_service"][key]
+                    else:
+                        c["id_service"][key] = value
+            return mutate
+        cases = {
+            "missing": lambda c: c.pop("id_service"),
+            "not object": lambda c: c.__setitem__("id_service", "https://id.example.invalid"),
+            "api missing": id_service(api=None),
+            "api not url": id_service(api="id.example.invalid/api"),
+            "web missing": id_service(web=None),
+            "web not url": id_service(web=5),
+            "server missing": id_service(server=None),
+            "server empty": id_service(server=""),
+            "server not str": id_service(server=1),
+        }
+        for label, mutate in cases.items():
+            with self.subTest(label):
+                self.assert_fatal(mutate, "id_service")
+
+    def test_lane_name_types(self):
+        def lane_name(value):
+            return lambda c: c["servers"][0]["lanes"][1].__setitem__("name", value)
+        for label, value, word in (
+            ("not object", "เลน Supporter", "name"),
+            ("th not str", {"th": 1}, "name.th"),
+            ("en not str", {"th": "เลน", "en": ["x"]}, "name.en"),
+        ):
+            with self.subTest(label):
+                self.assert_fatal(lane_name(value), "renewal", "supporter", word)
 
     def test_unknown_fields_ignored(self):
         c = fixture()
