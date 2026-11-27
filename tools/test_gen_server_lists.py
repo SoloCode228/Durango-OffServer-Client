@@ -99,6 +99,19 @@ class ValidateTests(unittest.TestCase):
         with self.assertRaises(g.CatalogError):
             g.validate(c)
 
+    def test_id_with_trailing_newline_rejected(self):
+        def server_id(c):
+            c["servers"][1]["id"] = "classic\n"
+        def lane_id(c):
+            c["servers"][0]["lanes"][1]["id"] = "supporter\n"
+        for label, mutate in (("server id", server_id), ("lane id", lane_id)):
+            with self.subTest(label):
+                c = fixture()
+                mutate(c)
+                with self.assertRaises(g.CatalogError) as cm:
+                    g.validate(c)
+                self.assertIn("id", str(cm.exception))
+
     def test_name_th_required(self):
         c = fixture()
         del c["servers"][1]["name"]["th"]
@@ -277,6 +290,16 @@ class LoadTests(unittest.TestCase):
                 # In an unknown field, so only the parser can catch it.
                 text = json.dumps(FIXTURE, ensure_ascii=False).replace('{"schema": 3', '{"x": ' + literal + ', "schema": 3', 1)
                 self.assertIn(literal, text)
+                with self.assertRaises(g.CatalogError) as cm:
+                    self.load_text(text)
+                self.assertIn("servers-v3.json", str(cm.exception))
+                self.assertIn(literal, str(cm.exception))
+
+    def test_non_finite_numbers_rejected(self):
+        for literal in ("1e999", "-1e999", "1E400"):
+            with self.subTest(literal=literal):
+                # In an unknown field, so only the parser can catch it.
+                text = json.dumps(FIXTURE, ensure_ascii=False).replace('{"schema": 3', '{"x": ' + literal + ', "schema": 3', 1)
                 with self.assertRaises(g.CatalogError) as cm:
                     self.load_text(text)
                 self.assertIn("servers-v3.json", str(cm.exception))

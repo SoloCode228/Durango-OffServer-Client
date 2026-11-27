@@ -9,6 +9,7 @@ servers.json from it (contract S2). Importing it has no side effects.
 import argparse
 import datetime
 import json
+import math
 import os
 import re
 import sys
@@ -32,7 +33,7 @@ class CatalogError(Exception):
 
 
 def _check_id(value, pattern, what):
-    if not isinstance(value, str) or not pattern.match(value):
+    if not isinstance(value, str) or not pattern.fullmatch(value):
         raise CatalogError(f"{what} id {value!r} must match {pattern.pattern}")
     return value
 
@@ -187,6 +188,13 @@ def _reject_constant(literal: str):
     raise _StrictJSONError(f"{literal} is not valid JSON")
 
 
+def _finite_float(text: str) -> float:
+    value = float(text)
+    if not math.isfinite(value):
+        raise _StrictJSONError(f"number {text} is too large (not finite)")
+    return value
+
+
 def _reject_duplicate_keys(pairs: list) -> dict:
     obj = {}
     for key, value in pairs:
@@ -200,12 +208,13 @@ def load_catalog(path: str) -> dict:
     """Read a UTF-8 servers-v3.json, validate it, and return it.
 
     A file that cannot be read, is not UTF-8, or is not valid JSON raises
-    CatalogError naming the path. So do NaN/Infinity and duplicate keys,
-    which Python's json accepts but other readers of the file do not.
+    CatalogError naming the path. So do NaN/Infinity, numbers too large to be
+    finite (1e999) and duplicate keys, which Python's json accepts but other
+    readers of the file do not.
     """
     try:
         with open(path, encoding="utf-8") as f:
-            catalog = json.load(f, parse_constant=_reject_constant,
+            catalog = json.load(f, parse_constant=_reject_constant, parse_float=_finite_float,
                                 object_pairs_hook=_reject_duplicate_keys)
     except OSError as e:
         raise CatalogError(f"{path}: cannot read: {e}") from e
