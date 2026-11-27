@@ -310,6 +310,12 @@ class MainTests(unittest.TestCase):
         self.assertNotIn("Traceback", err)
         self.assert_nothing_written()
 
+    def test_repo_files_in_sync(self):
+        # Read-only: --check on the real repo root. Fails when someone edits
+        # servers-v3.json and forgets to run tools/gen_server_lists.py.
+        code, err = run_main(["--check"])
+        self.assertEqual(code, 0, err)
+
     def test_non_utf8_catalog_writes_nothing(self):
         with open(self.path("servers-v3.json"), "wb") as f:
             f.write(b'{"schema": 3, "servers": [], "x": "' + bytes([0xFF, 0xFE]) + b'"}')

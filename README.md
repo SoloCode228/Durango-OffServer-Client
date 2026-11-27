@@ -39,7 +39,9 @@
 
 - `servers-v3.json` is the one source of the game's server list (servers, lanes, gateways, links).
 - `servers-v2.json` and `servers.json` are generated from it for older clients. Do not edit them by hand.
+- The tools need Python 3.10 or newer (standard library only).
 - After changing `servers-v3.json`, run `python tools/gen_server_lists.py` to rewrite both files.
 - Before every commit, run `python tools/gen_server_lists.py --check` (exit 0 = in sync; exit 1 names the file that differs or the catalog error).
+- To have git run that check on every commit, run once per clone: `git config core.hooksPath tools/hooks`.
 - Tests: `python -m unittest tools/test_gen_server_lists.py -v`.
 - A push to `main` reaches players at once: clients and launchers read these files from `main`.
