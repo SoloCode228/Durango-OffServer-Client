@@ -1,14 +1,26 @@
 """servers-v3.json is the one source of the game's server list.
 
-This module reads and checks it (contract S1). Importing it has no side effects.
+This module reads and checks it (contract S1) and writes servers-v2.json and
+servers.json from it (contract S2). Importing it has no side effects.
+
+    python tools/gen_server_lists.py            # write servers-v2.json, servers.json
+    python tools/gen_server_lists.py --check    # exit 1 if either file is out of date
 """
+import argparse
 import json
+import os
 import re
+import sys
 
 SCHEMA = 3
 SERVER_ID_RE = re.compile(r"^[a-z0-9-]{2,32}$")
 LANE_ID_RE = re.compile(r"^[a-z0-9-]{1,32}$")
 KNOWN_RULES = ("classic", "renewal")
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CATALOG_FILE = "servers-v3.json"
+V2_FILE = "servers-v2.json"
+V1_FILE = "servers.json"
 
 
 class CatalogError(Exception):
@@ -51,6 +63,10 @@ def validate(catalog: dict) -> list[str]:
         if not isinstance(name, dict) or not isinstance(name.get("th"), str) or not name["th"]:
             raise CatalogError(f"server {sid!r} needs name.th")
 
+        order = server.get("order")
+        if type(order) is not int:
+            raise CatalogError(f"server {sid!r}: order must be an int, got {order!r}")
+
         rules = server.get("rules")
         if rules not in KNOWN_RULES:
             warnings.append(f"server {sid!r}: unknown rules {rules!r}; readers hide this server")
@@ -66,16 +82,27 @@ def validate(catalog: dict) -> list[str]:
             if lid in seen_lanes:
                 raise CatalogError(f"server {sid!r} has duplicate lane id {lid!r}")
             seen_lanes.add(lid)
+            gateway = lane.get("gateway")
+            if not isinstance(gateway, str) or not gateway:
+                raise CatalogError(f"server {sid!r} lane {lid!r} needs a gateway")
     return warnings
 
 
 def load_catalog(path: str) -> dict:
-    """Read a UTF-8 servers-v3.json, validate it, and return it."""
-    with open(path, encoding="utf-8") as f:
-        try:
+    """Read a UTF-8 servers-v3.json, validate it, and return it.
+
+    A file that cannot be read, is not UTF-8, or is not valid JSON raises
+    CatalogError naming the path.
+    """
+    try:
+        with open(path, encoding="utf-8") as f:
             catalog = json.load(f)
-        except json.JSONDecodeError as e:
-            raise CatalogError(f"{path}: not valid JSON: {e}") from e
+    except OSError as e:
+        raise CatalogError(f"{path}: cannot read: {e}") from e
+    except UnicodeDecodeError as e:
+        raise CatalogError(f"{path}: not UTF-8: {e}") from e
+    except json.JSONDecodeError as e:
+        raise CatalogError(f"{path}: not valid JSON: {e}") from e
     validate(catalog)
     return catalog
 
@@ -144,3 +171,62 @@ def dump(obj: dict) -> str:
     Write it with newline="" (or as UTF-8 bytes) so Windows keeps LF.
     """
     return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
+
+
+def _outputs(catalog: dict) -> dict[str, bytes]:
+    """File name -> exact bytes of each generated file."""
+    return {
+        V2_FILE: dump(build_v2(catalog)).encode("utf-8"),
+        V1_FILE: dump(build_v1(catalog)).encode("utf-8"),
+    }
+
+
+def _read_bytes(path: str) -> bytes | None:
+    try:
+        with open(path, "rb") as f:
+            return f.read()
+    except FileNotFoundError:
+        return None
+
+
+def main(argv: list[str]) -> int:
+    """Write (or with --check, compare) servers-v2.json and servers.json.
+
+    Exit 0 = written / in sync. Exit 1 = the catalog is invalid (nothing is
+    written) or --check found a file that differs (its name goes to stderr).
+    """
+    parser = argparse.ArgumentParser(
+        prog="gen_server_lists.py",
+        description=f"Generate {V2_FILE} and {V1_FILE} from {CATALOG_FILE}.",
+    )
+    parser.add_argument("--root", default=REPO_ROOT,
+                        help=f"folder holding {CATALOG_FILE} and the generated files (default: repo root)")
+    parser.add_argument("--check", action="store_true",
+                        help="do not write; exit 1 if a generated file differs from what is on disk")
+    args = parser.parse_args(argv)
+
+    try:
+        catalog = load_catalog(os.path.join(args.root, CATALOG_FILE))
+        warnings = validate(catalog)
+        outputs = _outputs(catalog)
+    except CatalogError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+    for w in warnings:
+        print(f"warning: {w}", file=sys.stderr)
+
+    if args.check:
+        stale = [name for name, data in outputs.items()
+                 if _read_bytes(os.path.join(args.root, name)) != data]
+        for name in stale:
+            print(f"{name} is out of date; run python tools/gen_server_lists.py", file=sys.stderr)
+        return 1 if stale else 0
+
+    for name, data in outputs.items():
+        with open(os.path.join(args.root, name), "wb") as f:
+            f.write(data)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

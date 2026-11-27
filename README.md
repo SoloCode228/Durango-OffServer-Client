@@ -34,3 +34,12 @@
 - **어떠한 수익도 얻지 않습니다.** 판매, 인게임 결제, VIP, 유료 아이템, 광고, 후원을 일절 받지 않습니다. Durango: Reborn의 이름으로 돈을 요구하는 경우 **저희가 아닙니다.**
 - 본 프로젝트를 판매, 대여 또는 영리 목적으로 재배포하지 마십시오.
 - 권리자께서 우려 사항이 있으시면 **[supercodeth@gmail.com]** 로 연락해 주십시오. 신속히 답변드리며, **프로젝트 중단을 포함한 모든 요청에 따르겠습니다.**
+
+## Server list
+
+- `servers-v3.json` is the one source of the game's server list (servers, lanes, gateways, links).
+- `servers-v2.json` and `servers.json` are generated from it for older clients. Do not edit them by hand.
+- After changing `servers-v3.json`, run `python tools/gen_server_lists.py` to rewrite both files.
+- Before every commit, run `python tools/gen_server_lists.py --check` (exit 0 = in sync; exit 1 names the file that differs or the catalog error).
+- Tests: `python -m unittest tools/test_gen_server_lists.py -v`.
+- A push to `main` reaches players at once: clients and launchers read these files from `main`.

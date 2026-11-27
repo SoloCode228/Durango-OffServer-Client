@@ -2,9 +2,14 @@
 
     python -m unittest tools/test_gen_server_lists.py -v
 """
+import contextlib
 import copy
+import io
+import json
 import os
+import shutil
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -96,6 +101,21 @@ class ValidateTests(unittest.TestCase):
         warnings = g.validate(c)
         self.assertEqual(len(warnings), 1)
         self.assertIn("rules", warnings[0])
+
+    def test_order_must_be_int(self):
+        c = fixture()
+        c["servers"][1]["order"] = "20"
+        with self.assertRaises(g.CatalogError) as cm:
+            g.validate(c)
+        self.assertIn("order", str(cm.exception))
+
+    def test_lane_needs_gateway(self):
+        c = fixture()
+        c["servers"][0]["lanes"][1]["gateway"] = ""
+        with self.assertRaises(g.CatalogError) as cm:
+            g.validate(c)
+        self.assertIn("gateway", str(cm.exception))
+        self.assertIn("supporter", str(cm.exception))
 
     def test_unknown_fields_ignored(self):
         c = fixture()
@@ -198,6 +218,100 @@ class BuildTests(unittest.TestCase):
             self.assertNotIn("mode", row)
         self.assertNotIn("https://example.invalid/gw", gateways(v1))
         self.assertEqual(gateways(v1), ["http://127.0.0.1:8290", "http://127.0.0.1:8292"])
+
+
+def run_main(argv):
+    """Call g.main(argv) and return (exit code, stderr text)."""
+    err = io.StringIO()
+    with contextlib.redirect_stderr(err):
+        code = g.main(argv)
+    return code, err.getvalue()
+
+
+def read_bytes(path):
+    with open(path, "rb") as f:
+        return f.read()
+
+
+class MainTests(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = self._tmp.name
+        self.addCleanup(self._tmp.cleanup)
+
+    def path(self, name):
+        return os.path.join(self.root, name)
+
+    def copy_v3(self):
+        shutil.copy(os.path.join(REPO_ROOT, "servers-v3.json"), self.path("servers-v3.json"))
+
+    def assert_nothing_written(self):
+        self.assertFalse(os.path.exists(self.path("servers-v2.json")))
+        self.assertFalse(os.path.exists(self.path("servers.json")))
+
+    def test_write_creates_both_files(self):
+        self.copy_v3()
+        code, _ = run_main(["--root", self.root])
+        self.assertEqual(code, 0)
+        self.assertEqual(read_bytes(self.path("servers-v2.json")),
+                         read_testdata("servers-v2.cd8152b.json").encode("utf-8"))
+        self.assertEqual(read_bytes(self.path("servers.json")),
+                         read_testdata("servers.cd8152b.json").encode("utf-8"))
+
+    def test_check_passes_when_in_sync(self):
+        self.copy_v3()
+        self.assertEqual(run_main(["--root", self.root])[0], 0)
+        code, err = run_main(["--root", self.root, "--check"])
+        self.assertEqual(code, 0, err)
+
+    def test_check_fails_on_hand_edit(self):
+        self.copy_v3()
+        self.assertEqual(run_main(["--root", self.root])[0], 0)
+        v2 = self.path("servers-v2.json")
+        data = read_bytes(v2)
+        with open(v2, "wb") as f:
+            f.write(data.replace(b"8290", b"8291", 1))
+        code, err = run_main(["--root", self.root, "--check"])
+        self.assertEqual(code, 1)
+        self.assertIn("servers-v2.json", err)
+        self.assertNotIn("servers.json ", err)
+
+    def test_invalid_catalog_writes_nothing(self):
+        c = json.loads(read_bytes(os.path.join(REPO_ROOT, "servers-v3.json")).decode("utf-8"))
+        c["servers"][1]["id"] = c["servers"][0]["id"]
+        with open(self.path("servers-v3.json"), "w", encoding="utf-8", newline="") as f:
+            json.dump(c, f, ensure_ascii=False)
+        code, err = run_main(["--root", self.root])
+        self.assertEqual(code, 1)
+        self.assertIn("duplicate", err)
+        self.assert_nothing_written()
+
+    def test_unknown_rules_prints_warning(self):
+        c = json.loads(read_bytes(os.path.join(REPO_ROOT, "servers-v3.json")).decode("utf-8"))
+        c["servers"].append(extra_server("pvp", "http://pvp.invalid", rules="pvp"))
+        with open(self.path("servers-v3.json"), "w", encoding="utf-8", newline="") as f:
+            json.dump(c, f, ensure_ascii=False)
+        code, err = run_main(["--root", self.root])
+        self.assertEqual(code, 0)
+        self.assertTrue(err.startswith("warning: "), err)
+        self.assertIn("pvp", err)
+        self.assertEqual(read_bytes(self.path("servers-v2.json")),
+                         read_testdata("servers-v2.cd8152b.json").encode("utf-8"))
+
+    def test_missing_catalog_writes_nothing(self):
+        code, err = run_main(["--root", self.root])
+        self.assertEqual(code, 1)
+        self.assertIn("servers-v3.json", err)
+        self.assertNotIn("Traceback", err)
+        self.assert_nothing_written()
+
+    def test_non_utf8_catalog_writes_nothing(self):
+        with open(self.path("servers-v3.json"), "wb") as f:
+            f.write(b'{"schema": 3, "servers": [], "x": "' + bytes([0xFF, 0xFE]) + b'"}')
+        code, err = run_main(["--root", self.root])
+        self.assertEqual(code, 1)
+        self.assertIn("servers-v3.json", err)
+        self.assert_nothing_written()
 
 
 if __name__ == "__main__":
