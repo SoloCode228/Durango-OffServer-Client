@@ -4,67 +4,150 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Durango · เลือกเซิร์ฟเวอร์</title>
-<meta name="description" content="เลือกเซิร์ฟเวอร์ Durango: Renewal หรือ Classic · Choose your Durango server.">
+<meta name="description" content="เลือกเซิร์ฟเวอร์ Durango แล้วเล่นผ่านรันเช่อหรือบนเว็บ · Choose your Durango server.">
 <meta name="theme-color" content="#0C0A12">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0A12'/%3E%3Cpath d='M32 12 52 50H12Z' fill='%23F5C518'/%3E%3C/svg%3E">
-<!-- ธีมเดียวกับ DurangoLauncher (src/DurangoLauncher/Ui.cs): ม่วงดำ + เหลือง + Kanit · ภาพ hero ย้อมม่วงด้วยสูตร Ui.PurpleTint -->
+<!-- ธีมเดียวกับ DurangoLauncher (src/DurangoLauncher/Ui.cs): ม่วงดำ + เหลือง + Kanit · ภาพ hero ย้อมม่วงด้วยสูตร Ui.PurpleTint
+     รายชื่อเซิร์ฟมาจาก servers-v3.json ผ่าน catalog.js · app.js วาดหน้า (ไม่มีชื่อเซิร์ฟในไฟล์นี้) -->
 <style>
   @font-face { font-family: Kanit; font-weight: 400; font-display: swap; src: url(Kanit-Regular.ttf) format("truetype"); }
   @font-face { font-family: Kanit; font-weight: 500; font-display: swap; src: url(Kanit-Medium.ttf) format("truetype"); }
   :root {
     --k0: #0C0A12; --k1: #15121E; --k2: #1D1929; --k3: #2B253D;
     --pd: #33246B; --pl: #B8A4FF; --y: #F5C518; --yh: #FFD84A; --yt: #1C1500;
-    --t: #F5F2FB; --td: #B0A9C4; --tm: #7A7391; --g: #5BD68A;
+    --t: #F5F2FB; --td: #B0A9C4; --tm: #7A7391; --g: #5BD68A; --bad: #F0806E;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
   body {
     min-height: 100vh; background: var(--k0); color: var(--t);
     font-family: Kanit, "Leelawadee UI", Tahoma, system-ui, sans-serif; font-weight: 400;
-    display: flex; flex-direction: column; line-height: 1.5;
+    display: flex; flex-direction: column; line-height: 1.5; overflow-x: hidden;
   }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  [hidden] { display: none !important; }
+
+  /* แถบบน */
+  .topbar {
+    position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px;
+    padding: 10px 22px; background: rgba(12,10,18,.88); border-bottom: 1px solid var(--k3);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .topbar .mark { display: block; height: 30px; }
+  .topbar .mark img { height: 30px; width: auto; display: block; }
+  .topbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; }
+  .topbar nav a { color: var(--td); text-decoration: none; }
+  .topbar nav a:hover, .topbar nav a:focus-visible { color: var(--t); }
+  .topbar nav a.on { color: var(--t); }
+  .acct { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--k3); background: var(--k1);
+    border-radius: 8px; padding: 6px 14px; font-size: 14px; color: var(--t); text-decoration: none; white-space: nowrap;
+  }
+  .btn:hover, .btn:focus-visible { border-color: var(--pl); outline: none; }
+  .btn.y { background: var(--y); color: var(--yt); border-color: var(--y); font-weight: 500; }
+  .btn.y:hover, .btn.y:focus-visible { background: var(--yh); }
+
   .hero {
     position: relative; min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
     padding: 48px 16px 120px; text-align: center;
     background: linear-gradient(180deg, rgba(12,10,18,.15) 0%, rgba(12,10,18,.35) 55%, var(--k0) 100%), url(hero.jpg) center 35% / cover no-repeat;
   }
   .logo { width: min(340px, 72vw); height: auto; display: block; filter: drop-shadow(0 4px 18px rgba(0,0,0,.55)); }
-  .reborn { margin-top: 4px; font-size: 13px; letter-spacing: .32em; color: var(--pl); text-transform: lowercase; }
   h1 { margin: 22px 0 4px; font-size: clamp(26px, 5vw, 36px); font-weight: 500; }
   .sub { margin: 0; color: var(--td); font-size: 15px; }
   main {
     width: 100%; max-width: 940px; margin: -96px auto 0; padding: 0 16px 32px; position: relative;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
+    scroll-margin-top: 64px;
   }
+
+  /* ตัวกรอง */
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .chip {
+    background: var(--k1); border: 1px solid var(--k3); border-radius: 20px; padding: 4px 14px; font-size: 13px; color: var(--td);
+  }
+  .chip:hover, .chip:focus-visible { border-color: var(--pl); outline: none; }
+  .chip[aria-pressed="true"] { background: var(--pd); border-color: var(--pl); color: var(--t); }
+  .bar input {
+    margin-left: auto; background: var(--k1); border: 1px solid var(--k3); border-radius: 8px; color: var(--t);
+    font: inherit; font-size: 13px; padding: 6px 10px; width: 200px; max-width: 100%;
+  }
+  .bar input:focus { border-color: var(--pl); outline: none; }
+
+  /* การ์ด */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
   .card {
-    display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 20px;
+    display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 20px; min-width: 0;
     background: var(--k1); border: 1px solid var(--k3); border-radius: 12px;
-    color: inherit; text-decoration: none; transition: border-color .15s, background .15s, transform .15s;
+    transition: border-color .15s, background .15s;
   }
-  .card:hover, .card:focus-visible { background: var(--k2); border-color: var(--pl); transform: translateY(-2px); outline: none; }
-  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .card:hover, .card:focus-within { background: var(--k2); border-color: var(--pl); }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
   .tag { font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 5px; background: var(--pd); color: var(--pl); white-space: nowrap; }
   .tag.y { background: var(--y); color: var(--yt); }
-  .state { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--td); border: 1px solid var(--k3); background: var(--k0); border-radius: 20px; padding: 2px 10px 2px 8px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--g); }
+  .tag.o { background: var(--k2); color: var(--td); border: 1px solid var(--k3); }
+  .state { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--td); border: 1px solid var(--k3); background: var(--k0); border-radius: 20px; padding: 2px 10px 2px 8px; white-space: nowrap; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--g); flex: none; }
   .dot.soon { background: var(--y); }
-  .card h2 { margin: 0; font-size: 24px; font-weight: 500; line-height: 1.2; }
-  .card h2 span { color: var(--y); }
-  .card p { margin: 0; color: var(--td); font-size: 14px; }
+  .dot.off { background: var(--bad); }
+  .card h2 { margin: 0; font-size: 24px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
+  .card p { margin: 0; color: var(--td); font-size: 14px; overflow-wrap: anywhere; }
   .en { display: block; color: var(--tm); font-size: 13px; }
-  ul { margin: 0; padding: 0; list-style: none; font-size: 14px; }
-  li { display: flex; gap: 8px; padding: 7px 0; border-top: 1px solid var(--k3); }
-  li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 2px; background: var(--y); }
+  .act { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
   .go {
-    margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px;
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 46px; border: none;
     border-radius: 8px; background: var(--y); color: var(--yt); font-weight: 500; font-size: 16px; transition: background .15s;
   }
-  .card:hover .go, .card:focus-visible .go { background: var(--yh); }
-  .host { text-align: center; font-size: 12px; color: var(--tm); }
+  .go:hover, .go:focus-visible { background: var(--yh); outline: none; }
+  .go:disabled { background: var(--k2); color: var(--tm); border: 1px solid var(--k3); cursor: not-allowed; }
+  .soon-at { color: var(--t); font-size: 14px; font-weight: 500; }
+  .act a, .site a { color: var(--pl); font-size: 13px; }
+  .site { font-size: 13px; text-align: center; }
+
+  /* ตาราง */
+  .table { border: 1px solid var(--k3); border-radius: 12px; overflow: hidden; }
+  .grp { padding: 8px 16px; background: var(--k0); color: var(--pl); font-size: 12px; letter-spacing: .06em; border-top: 1px solid var(--k3); }
+  .lrow {
+    display: grid; grid-template-columns: minmax(0, 1fr) 190px 170px; gap: 12px; align-items: center;
+    padding: 11px 16px; background: var(--k1); border-top: 1px solid var(--k3); font-size: 14px;
+  }
+  .lrow.head { background: var(--k0); color: var(--tm); font-size: 12px; border-top: none; }
+  .lrow .nm { font-weight: 500; overflow-wrap: anywhere; }
+  .lrow .mut { display: block; color: var(--td); font-size: 13px; font-weight: 400; }
+  .lrow .state { justify-self: start; }
+  .lrow .go { height: 34px; font-size: 14px; }
+  .lrow .act { margin-top: 0; }
+
+  .msg { padding: 30px 16px; text-align: center; color: var(--td); background: var(--k1); border: 1px solid var(--k3); border-radius: 12px; }
+  .msg .btn { margin-top: 12px; }
+
+  /* กล่องเล่น */
+  dialog {
+    width: min(440px, calc(100% - 32px)); padding: 0; color: var(--t);
+    background: var(--k1); border: 1px solid var(--k3); border-radius: 14px;
+  }
+  dialog::backdrop { background: rgba(5,4,9,.72); }
+  .dlg { display: flex; flex-direction: column; gap: 12px; padding: 22px; }
+  .dlg h3 { margin: 0; padding-right: 28px; font-size: 20px; font-weight: 500; overflow-wrap: anywhere; }
+  .dlg .x { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--tm); font-size: 24px; line-height: 1; padding: 4px 8px; }
+  .dlg .x:hover, .dlg .x:focus-visible { color: var(--t); outline: none; }
+  .opt {
+    display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--k3); border-radius: 10px;
+    background: var(--k0); color: var(--t); text-decoration: none;
+  }
+  .opt:hover, .opt:focus-visible { border-color: var(--pl); outline: none; }
+  .opt.y { border-color: var(--y); }
+  .opt b { font-weight: 500; font-size: 16px; }
+  .opt small { color: var(--td); font-size: 12px; }
+  .dlg p { margin: 0; color: var(--tm); font-size: 12px; }
+  .dlg p a { color: var(--pl); }
+
+  /* ดาวน์โหลด */
   .dl {
     max-width: 908px; width: calc(100% - 32px); margin: 0 auto 32px; padding: 18px 22px;
     background: var(--pd); border: 1px solid #4a3a8f; border-radius: 12px;
-    display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; scroll-margin-top: 64px;
   }
   .dl h2 { margin: 0 0 2px; font-size: 20px; font-weight: 500; }
   .dl h2 span { color: var(--y); }
@@ -82,10 +165,19 @@
   .dlb b { font-weight: 500; font-size: 16px; }
   .dlb small { font-size: 12px; opacity: .75; }
   footer { margin-top: auto; text-align: center; padding: 16px; color: var(--tm); font-size: 12px; border-top: 1px solid var(--k1); }
+  footer a { color: inherit; }
+  @media (max-width: 720px) {
+    .lrow { grid-template-columns: minmax(0, 1fr) 150px 140px; }
+  }
   @media (max-width: 520px) {
+    .topbar { padding: 8px 16px; gap: 6px 12px; }
+    .topbar nav { order: 3; width: 100%; gap: 2px 14px; }
     .hero { min-height: 280px; padding-bottom: 104px; }
     main { margin-top: -80px; }
     .card { padding: 18px 16px 16px; }
+    .bar input { margin-left: 0; width: 100%; }
+    .lrow { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .lrow.head { display: none; }
     .dl { padding: 16px; }
     .dl-btns, .dlb { width: 100%; }
     .dlb { flex: 1; min-width: 0; }
@@ -93,46 +185,37 @@
 </style>
 </head>
 <body>
+<div class="topbar">
+  <a class="mark" href="#servers"><img src="logo.png" alt="Durango" width="646" height="254"></a>
+  <nav>
+    <a class="on" href="#servers">เซิร์ฟเวอร์</a>
+    <a id="nav-news" href="https://discord.gg/RMfeg6Drbu" rel="noopener">ข่าว</a>
+    <a id="nav-community" href="https://classic.solocode.co/community" rel="noopener">ชุมชน</a>
+    <a href="https://solocode228.github.io/Durango-OffServer-Client/" rel="noopener">คู่มือ</a>
+    <a href="#download">ดาวน์โหลด</a>
+  </nav>
+  <div class="acct">
+    <a class="btn" id="signup" href="#" hidden>สมัคร</a>
+    <a class="btn y" id="login" href="#" hidden>เข้าสู่ระบบ</a>
+  </div>
+</div>
+
 <header class="hero">
   <img class="logo" src="logo.png" alt="Durango" width="646" height="254">
-  <div class="reborn">reborn</div>
   <h1>เลือกเซิร์ฟเวอร์</h1>
-  <p class="sub">สองเซิร์ฟเวอร์ แยกตัวละครและข้อมูลกัน · Two servers, separate characters and data</p>
+  <p class="sub">ตัวละครแยกตามเซิร์ฟ · Characters are separate per server</p>
 </header>
 
-<main>
-  <a class="card" href="https://renewal.solocode.co/">
-    <div class="top"><span class="tag y">Renewal · OBT</span><span class="state"><i class="dot"></i>เปิดอยู่</span></div>
-    <h2>Durango <span>Renewal</span></h2>
-    <p>เซิร์ฟเวอร์ OBT ที่เปิดอยู่ ตัวละครและเกาะเดิมของคุณอยู่ที่นี่
-      <span class="en">The live OBT server, with your existing characters and islands.</span></p>
-    <ul>
-      <li>มีระบบเสริมของ Renewal</li>
-      <li>เข้าเกมผ่าน launcher หรือเล่นบนเว็บ</li>
-    </ul>
-    <span class="go">เข้า Renewal →</span>
-    <span class="host">renewal.solocode.co</span>
-  </a>
-
-  <a class="card" href="https://classic.solocode.co/">
-    <div class="top"><span class="tag">Classic</span><span class="state"><i class="dot soon"></i>เปิด 25 พ.ย.</span></div>
-    <h2>Durango <span>Classic</span></h2>
-    <p>เกมต้นฉบับแบบปี 2019 เริ่มใหม่ทุกคน เปิดจริง 25 พ.ย. 2026
-      <span class="en">The original 2019 game, everyone starts fresh. Opens 25 Nov 2026.</span></p>
-    <ul>
-      <li>ค่าเกมตามต้นฉบับ ไม่มีระบบเสริม</li>
-      <li>บัญชีและตัวละครแยกจาก Renewal</li>
-    </ul>
-    <span class="go">เข้า Classic →</span>
-    <span class="host">classic.solocode.co</span>
-  </a>
+<main id="servers">
+  <div class="bar" id="bar" hidden></div>
+  <div id="list" aria-live="polite"><div class="msg">กำลังโหลดรายชื่อเซิร์ฟ…</div></div>
 </main>
 
-<section class="dl" aria-labelledby="dl-h">
+<section class="dl" id="download" aria-labelledby="dl-h">
   <div class="dl-text">
     <h2 id="dl-h">ดาวน์โหลด <span>Launcher</span></h2>
-    <p>ตัวเดียวเล่นได้ทั้ง Renewal และ Classic เลือกเซิร์ฟในเกม
-      <span class="en">One launcher for both servers. Pick the server in the game.</span></p>
+    <p>ตัวเดียวเล่นได้ทุกเซิร์ฟ
+      <span class="en">One launcher for every server.</span></p>
   </div>
   <div class="dl-btns">
     <a class="dlb" id="dl-pc" href="https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher.exe" rel="noopener">
@@ -145,22 +228,24 @@
     </a>
   </div>
 </section>
-<script>
-  // ลิงก์รุ่นล่าสุดจากไฟล์เดียวกับที่ launcher เช็กอัปเดต · โหลดไม่ได้ = ใช้ลิงก์ในหน้า (1.9.0)
-  (function () {
-    var base = "https://raw.githubusercontent.com/SoloCode228/Durango-OffServer-Client/main/";
-    function mb(n) { return n >= 1048576 ? Math.round(n / 1048576) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
-    function set(id, l) {
-      if (!l || !/^https:\/\/github\.com\//.test(l.url || "")) return;
-      document.getElementById(id).href = l.url;
-      document.getElementById(id + "-v").textContent = "v" + l.version + (l.size ? " · " + mb(l.size) : "");
-    }
-    function get(f, cb) { fetch(base + f, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(cb).catch(function () {}); }
-    get("pc-launcher.json", function (j) { set("dl-pc", j); });
-    get("android.json", function (j) { set("dl-and", j && j.launcher); });
-  })();
-</script>
 
-<footer>solocode.co · ฟอนต์ Kanit (<a href="Kanit-OFL.txt" style="color:inherit">OFL</a>)</footer>
+<dialog id="play-dialog" aria-labelledby="play-title">
+  <div class="dlg">
+    <button class="x" type="button" id="play-close" aria-label="ปิด">×</button>
+    <h3 id="play-title">เล่น</h3>
+    <a class="opt y" id="play-launcher" href="#">
+      <b>เปิดในรันเช่อ</b>
+      <small>รันเช่อเปิดที่เซิร์ฟนี้ให้เลย ไม่ต้องเลือกซ้ำในเกม</small>
+    </a>
+    <a class="opt" id="play-web" href="#" target="_blank" rel="noopener">
+      <b>เล่นบนเว็บ</b>
+    </a>
+    <p>ยังไม่มีรันเช่อ? <a id="play-download" href="#download">ดาวน์โหลดด้านล่าง</a></p>
+  </div>
+</dialog>
+
+<footer>solocode.co · ฟอนต์ Kanit (<a href="Kanit-OFL.txt">OFL</a>)</footer>
+<script src="catalog.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
