@@ -1,0 +1,39 @@
+{
+  "schema": 3,
+  "id_service": {
+    "api": "https://admin.dorangu.tech/id/api/game",
+    "server": "CloseBeta",
+    "web": "https://play.dorangu.tech/id"
+  },
+  "servers": [
+    {
+      "id": "renewal",
+      "order": 10,
+      "rules": "renewal",
+      "name": { "th": "Durango Renewal", "en": "Durango Renewal" },
+      "tagline": { "th": "ระบบเสริมของ Renewal · ตัวละครและเกาะเดิมจาก OBT", "en": "Renewal extras · your OBT characters and islands" },
+      "status": "open",
+      "links": { "site": "https://play.dorangu.tech", "play_web": "https://play.dorangu.tech/id/play" },
+      "lanes": [
+        { "id": "main", "name": { "th": "เลนปกติ", "en": "Main" }, "gateway": "http://168.222.21.53:8290", "access": "all",
+          "legacy_name": "[5BD68A][OBT][-] [F5C518]Dorangu:Renewal[-]" },
+        { "id": "supporter", "name": { "th": "เลน Supporter", "en": "Supporter" }, "gateway": "http://168.222.21.53:8292", "access": "supporter",
+          "legacy_name": "[5BD68A][OBT][-] [B8A4FF]Supporter[-]" }
+      ]
+    },
+    {
+      "id": "classic",
+      "order": 20,
+      "rules": "classic",
+      "name": { "th": "Durango Classic", "en": "Durango Classic" },
+      "tagline": { "th": "เกมต้นฉบับแบบปี 2019 เริ่มใหม่ทุกคน", "en": "The original 2019 game, everyone starts fresh" },
+      "status": "open",
+      "opens_at": "2026-11-25T00:00:00+07:00",
+      "links": { "site": "https://classic.solocode.co", "play_web": "https://classic.solocode.co/play" },
+      "lanes": [
+        { "id": "main", "name": { "th": "เลนปกติ", "en": "Main" }, "gateway": "https://play-classic.solocode.co/gw", "access": "all",
+          "legacy_name": "[7FC8FF]Durango Classic[-]" }
+      ]
+    }
+  ]
+}
