@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durango · เลือกเซิร์ฟเวอร์</title>
+<meta name="description" content="เลือกเซิร์ฟเวอร์ Durango แล้วเล่นผ่านรันเช่อหรือบนเว็บ · Choose your Durango server.">
+<meta name="theme-color" content="#0C0A12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0A12'/%3E%3Cpath d='M32 12 52 50H12Z' fill='%23F5C518'/%3E%3C/svg%3E">
+<!-- ธีมเดียวกับ DurangoLauncher (src/DurangoLauncher/Ui.cs): ม่วงดำ + เหลือง + Kanit · ภาพ hero ย้อมม่วงด้วยสูตร Ui.PurpleTint
+     รายชื่อเซิร์ฟมาจาก servers-v3.json ผ่าน catalog.js · app.js วาดหน้า (ไม่มีชื่อเซิร์ฟในไฟล์นี้) -->
+<style>
+  @font-face { font-family: Kanit; font-weight: 400; font-display: swap; src: url(Kanit-Regular.ttf) format("truetype"); }
+  @font-face { font-family: Kanit; font-weight: 500; font-display: swap; src: url(Kanit-Medium.ttf) format("truetype"); }
+  :root {
+    --k0: #0C0A12; --k1: #15121E; --k2: #1D1929; --k3: #2B253D;
+    --pd: #33246B; --pl: #B8A4FF; --y: #F5C518; --yh: #FFD84A; --yt: #1C1500;
+    --t: #F5F2FB; --td: #B0A9C4; --tm: #7A7391; --g: #5BD68A; --bad: #F0806E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    min-height: 100vh; background: var(--k0); color: var(--t);
+    font-family: Kanit, "Leelawadee UI", Tahoma, system-ui, sans-serif; font-weight: 400;
+    display: flex; flex-direction: column; line-height: 1.5; overflow-x: hidden;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  [hidden] { display: none !important; }
+
+  /* แถบบน */
+  .topbar {
+    position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px;
+    padding: 10px 22px; background: rgba(12,10,18,.88); border-bottom: 1px solid var(--k3);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .topbar .mark { display: block; height: 30px; }
+  .topbar .mark img { height: 30px; width: auto; display: block; }
+  .topbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; }
+  .topbar nav a { color: var(--td); text-decoration: none; }
+  .topbar nav a:hover, .topbar nav a:focus-visible { color: var(--t); }
+  .topbar nav a.on { color: var(--t); }
+  .acct { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--k3); background: var(--k1);
+    border-radius: 8px; padding: 6px 14px; font-size: 14px; color: var(--t); text-decoration: none; white-space: nowrap;
+  }
+  .btn:hover, .btn:focus-visible { border-color: var(--pl); outline: none; }
+  .btn.y { background: var(--y); color: var(--yt); border-color: var(--y); font-weight: 500; }
+  .btn.y:hover, .btn.y:focus-visible { background: var(--yh); }
+
+  .hero {
+    position: relative; min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding: 48px 16px 120px; text-align: center;
+    background: linear-gradient(180deg, rgba(12,10,18,.15) 0%, rgba(12,10,18,.35) 55%, var(--k0) 100%), url(hero.jpg) center 35% / cover no-repeat;
+  }
+  .logo { width: min(340px, 72vw); height: auto; display: block; filter: drop-shadow(0 4px 18px rgba(0,0,0,.55)); }
+  h1 { margin: 22px 0 4px; font-size: clamp(26px, 5vw, 36px); font-weight: 500; }
+  .sub { margin: 0; color: var(--td); font-size: 15px; }
+  main {
+    width: 100%; max-width: 940px; margin: -96px auto 0; padding: 0 16px 32px; position: relative;
+    scroll-margin-top: 64px;
+  }
+
+  /* ตัวกรอง */
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .chip {
+    background: var(--k1); border: 1px solid var(--k3); border-radius: 20px; padding: 4px 14px; font-size: 13px; color: var(--td);
+  }
+  .chip:hover, .chip:focus-visible { border-color: var(--pl); outline: none; }
+  .chip[aria-pressed="true"] { background: var(--pd); border-color: var(--pl); color: var(--t); }
+  .bar input {
+    margin-left: auto; background: var(--k1); border: 1px solid var(--k3); border-radius: 8px; color: var(--t);
+    font: inherit; font-size: 13px; padding: 6px 10px; width: 200px; max-width: 100%;
+  }
+  .bar input:focus { border-color: var(--pl); outline: none; }
+
+  /* การ์ด */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .card {
+    display: flex; flex-direction: column; gap: 12px; padding: 22px 22px 20px; min-width: 0;
+    background: var(--k1); border: 1px solid var(--k3); border-radius: 12px;
+    transition: border-color .15s, background .15s;
+  }
+  .card:hover, .card:focus-within { background: var(--k2); border-color: var(--pl); }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 5px; background: var(--pd); color: var(--pl); white-space: nowrap; }
+  .tag.y { background: var(--y); color: var(--yt); }
+  .tag.o { background: var(--k2); color: var(--td); border: 1px solid var(--k3); }
+  .state { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--td); border: 1px solid var(--k3); background: var(--k0); border-radius: 20px; padding: 2px 10px 2px 8px; white-space: nowrap; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--g); flex: none; }
+  .dot.soon { background: var(--y); }
+  .dot.off { background: var(--bad); }
+  .card h2 { margin: 0; font-size: 24px; font-weight: 500; line-height: 1.2; overflow-wrap: anywhere; }
+  .card p { margin: 0; color: var(--td); font-size: 14px; overflow-wrap: anywhere; }
+  .en { display: block; color: var(--tm); font-size: 13px; }
+  .act { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
+  .go {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 46px; border: none;
+    border-radius: 8px; background: var(--y); color: var(--yt); font-weight: 500; font-size: 16px; transition: background .15s;
+  }
+  .go:hover, .go:focus-visible { background: var(--yh); outline: none; }
+  .go:disabled { background: var(--k2); color: var(--tm); border: 1px solid var(--k3); cursor: not-allowed; }
+  .soon-at { color: var(--t); font-size: 14px; font-weight: 500; }
+  .act a, .site a { color: var(--pl); font-size: 13px; }
+  .site { font-size: 13px; text-align: center; }
+
+  /* ตาราง */
+  .table { border: 1px solid var(--k3); border-radius: 12px; overflow: hidden; }
+  .grp { padding: 8px 16px; background: var(--k0); color: var(--pl); font-size: 12px; letter-spacing: .06em; border-top: 1px solid var(--k3); }
+  .lrow {
+    display: grid; grid-template-columns: minmax(0, 1fr) 190px 170px; gap: 12px; align-items: center;
+    padding: 11px 16px; background: var(--k1); border-top: 1px solid var(--k3); font-size: 14px;
+  }
+  .lrow.head { background: var(--k0); color: var(--tm); font-size: 12px; border-top: none; }
+  .lrow .nm { font-weight: 500; overflow-wrap: anywhere; }
+  .lrow .mut { display: block; color: var(--td); font-size: 13px; font-weight: 400; }
+  .lrow .state { justify-self: start; }
+  .lrow .go { height: 34px; font-size: 14px; }
+  .lrow .act { margin-top: 0; }
+
+  .msg { padding: 30px 16px; text-align: center; color: var(--td); background: var(--k1); border: 1px solid var(--k3); border-radius: 12px; }
+  .msg .btn { margin-top: 12px; }
+
+  /* กล่องเล่น */
+  dialog {
+    width: min(440px, calc(100% - 32px)); padding: 0; color: var(--t);
+    background: var(--k1); border: 1px solid var(--k3); border-radius: 14px;
+  }
+  dialog::backdrop { background: rgba(5,4,9,.72); }
+  .dlg { display: flex; flex-direction: column; gap: 12px; padding: 22px; }
+  .dlg h3 { margin: 0; padding-right: 28px; font-size: 20px; font-weight: 500; overflow-wrap: anywhere; }
+  .dlg .x { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--tm); font-size: 24px; line-height: 1; padding: 4px 8px; }
+  .dlg .x:hover, .dlg .x:focus-visible { color: var(--t); outline: none; }
+  .opt {
+    display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--k3); border-radius: 10px;
+    background: var(--k0); color: var(--t); text-decoration: none;
+  }
+  .opt:hover, .opt:focus-visible { border-color: var(--pl); outline: none; }
+  .opt.y { border-color: var(--y); }
+  .opt b { font-weight: 500; font-size: 16px; }
+  .opt small { color: var(--td); font-size: 12px; }
+  .dlg p { margin: 0; color: var(--tm); font-size: 12px; }
+  .dlg p a { color: var(--pl); }
+
+  /* ดาวน์โหลด */
+  .dl {
+    max-width: 908px; width: calc(100% - 32px); margin: 0 auto 32px; padding: 18px 22px;
+    background: var(--pd); border: 1px solid #4a3a8f; border-radius: 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; scroll-margin-top: 64px;
+  }
+  .dl h2 { margin: 0 0 2px; font-size: 20px; font-weight: 500; }
+  .dl h2 span { color: var(--y); }
+  .dl p { margin: 0; color: var(--pl); font-size: 14px; }
+  .dl .en { color: var(--td); }
+  .dl-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .dlb span { text-align: left; }
+  .dlb {
+    display: flex; align-items: center; gap: 10px; min-width: 168px; height: 52px; padding: 0 16px;
+    border-radius: 8px; background: var(--y); color: var(--yt); text-decoration: none; transition: background .15s;
+  }
+  .dlb:hover, .dlb:focus-visible { background: var(--yh); outline: none; }
+  .dlb svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+  .dlb span { display: flex; flex-direction: column; line-height: 1.15; }
+  .dlb b { font-weight: 500; font-size: 16px; }
+  .dlb small { font-size: 12px; opacity: .75; }
+  footer { margin-top: auto; text-align: center; padding: 16px; color: var(--tm); font-size: 12px; border-top: 1px solid var(--k1); }
+  footer a { color: inherit; }
+  @media (max-width: 720px) {
+    .lrow { grid-template-columns: minmax(0, 1fr) 150px 140px; }
+  }
+  @media (max-width: 520px) {
+    .topbar { padding: 8px 16px; gap: 6px 12px; }
+    .topbar nav { order: 3; width: 100%; gap: 2px 14px; }
+    .hero { min-height: 280px; padding-bottom: 104px; }
+    main { margin-top: -80px; }
+    .card { padding: 18px 16px 16px; }
+    .bar input { margin-left: 0; width: 100%; }
+    .lrow { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .lrow.head { display: none; }
+    .dl { padding: 16px; }
+    .dl-btns, .dlb { width: 100%; }
+    .dlb { flex: 1; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="mark" href="#servers"><img src="logo.png" alt="Durango" width="646" height="254"></a>
+  <nav>
+    <a class="on" href="#servers">เซิร์ฟเวอร์</a>
+    <a id="nav-news" href="https://discord.gg/RMfeg6Drbu" rel="noopener">ข่าว</a>
+    <a id="nav-community" href="https://classic.solocode.co/community" rel="noopener">ชุมชน</a>
+    <a href="https://solocode228.github.io/Durango-OffServer-Client/" rel="noopener">คู่มือ</a>
+    <a href="#download">ดาวน์โหลด</a>
+  </nav>
+  <div class="acct">
+    <a class="btn" id="signup" href="#" hidden>สมัคร</a>
+    <a class="btn y" id="login" href="#" hidden>เข้าสู่ระบบ</a>
+  </div>
+</div>
+
+<header class="hero">
+  <img class="logo" src="logo.png" alt="Durango" width="646" height="254">
+  <h1>เลือกเซิร์ฟเวอร์</h1>
+  <p class="sub">ตัวละครแยกตามเซิร์ฟ · Characters are separate per server</p>
+</header>
+
+<main id="servers">
+  <div class="bar" id="bar" role="group" aria-label="ตัวกรอง" hidden></div>
+  <div id="list"><div class="msg" role="status">กำลังโหลดรายชื่อเซิร์ฟ…</div></div>
+</main>
+
+<section class="dl" id="download" aria-labelledby="dl-h">
+  <div class="dl-text">
+    <h2 id="dl-h">ดาวน์โหลด <span>Launcher</span></h2>
+    <p>ตัวเดียวเล่นได้ทุกเซิร์ฟ
+      <span class="en">One launcher for every server.</span></p>
+  </div>
+  <div class="dl-btns">
+    <a class="dlb" id="dl-pc" href="https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher.exe" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zM11 4.4 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.4z"/></svg>
+      <span><b>Windows</b><small id="dl-pc-v">v1.9.0 · 47 MB</small></span>
+    </a>
+    <a class="dlb" id="dl-and" href="https://github.com/SoloCode228/Durango-OffServer-Client/releases/download/android-launcher-v1.0.0/DurangoLauncher-android-1.9.0.apk" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9h10v8a1 1 0 0 1-1 1h-1v3h-2v-3h-2v3H9v-3H8a1 1 0 0 1-1-1zM4.5 9A1.5 1.5 0 0 1 6 10.5v4a1.5 1.5 0 0 1-3 0v-4A1.5 1.5 0 0 1 4.5 9m15 0a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-3 0v-4A1.5 1.5 0 0 1 19.5 9M7 8a5 5 0 0 1 2.4-4.2L8.6 2.4l.6-.4.9 1.4a5 5 0 0 1 3.8 0l.9-1.4.6.4-.8 1.4A5 5 0 0 1 17 8zm3-2.2a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4m4 0a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4"/></svg>
+      <span><b>Android</b><small id="dl-and-v">v1.9.0 · 1 MB</small></span>
+    </a>
+  </div>
+</section>
+
+<dialog id="play-dialog" aria-labelledby="play-title">
+  <div class="dlg">
+    <button class="x" type="button" id="play-close" aria-label="ปิด">×</button>
+    <h3 id="play-title">เล่น</h3>
+    <a class="opt y" id="play-launcher" href="#">
+      <b>เปิดในรันเช่อ</b>
+      <small>รันเช่อเปิดที่เซิร์ฟนี้ให้เลย ไม่ต้องเลือกซ้ำในเกม</small>
+    </a>
+    <a class="opt" id="play-web" href="#" target="_blank" rel="noopener">
+      <b>เล่นบนเว็บ</b>
+    </a>
+    <p>ยังไม่มีรันเช่อ? <a id="play-download" href="#download">ดาวน์โหลดด้านล่าง</a></p>
+  </div>
+</dialog>
+
+<footer>solocode.co · ฟอนต์ Kanit (<a href="Kanit-OFL.txt">OFL</a>)</footer>
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
