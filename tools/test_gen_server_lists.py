@@ -105,5 +105,100 @@ class ValidateTests(unittest.TestCase):
         self.assertEqual(g.validate(c), [])
 
 
+def read_testdata(name):
+    with open(os.path.join(REPO_ROOT, "tools", "testdata", name), encoding="utf-8", newline="") as f:
+        return f.read()
+
+
+def gateways(rows):
+    return [row["gateway"] for row in rows["servers"]]
+
+
+def extra_server(sid, gateway, order=30, rules="classic", status="open"):
+    return {
+        "id": sid,
+        "order": order,
+        "rules": rules,
+        "name": {"th": sid},
+        "status": status,
+        "lanes": [{"id": "main", "name": {"th": "เลนปกติ"}, "gateway": gateway, "access": "all"}],
+    }
+
+
+class BuildTests(unittest.TestCase):
+    def test_v2_matches_main_bytes(self):
+        c = g.load_catalog(os.path.join(REPO_ROOT, "servers-v3.json"))
+        self.assertEqual(g.dump(g.build_v2(c)), read_testdata("servers-v2.cd8152b.json"))
+
+    def test_v1_matches_main_bytes(self):
+        c = g.load_catalog(os.path.join(REPO_ROOT, "servers-v3.json"))
+        self.assertEqual(g.dump(g.build_v1(c)), read_testdata("servers.cd8152b.json"))
+
+    def test_non_open_servers_excluded(self):
+        c = fixture()
+        c["servers"].append(extra_server("soon", "http://soon.invalid", rules="renewal", status="soon"))
+        c["servers"].append(extra_server("maint", "http://maint.invalid", rules="renewal", status="maintenance"))
+        c["servers"].append(extra_server("hidden", "http://hidden.invalid", rules="renewal", status="hidden"))
+        c["servers"].append(extra_server("odd", "http://odd.invalid", rules="renewal", status="closed"))
+        hidden = {"http://soon.invalid", "http://maint.invalid", "http://hidden.invalid", "http://odd.invalid"}
+        for rows in (g.build_v2(c), g.build_v1(c)):
+            self.assertEqual(hidden & set(gateways(rows)), set())
+        self.assertEqual(len(g.build_v2(c)["servers"]), 3)
+
+    def test_unknown_rules_excluded(self):
+        c = fixture()
+        c["servers"].append(extra_server("pvp", "http://pvp.invalid", rules="pvp"))
+        self.assertNotIn("http://pvp.invalid", gateways(g.build_v2(c)))
+        self.assertNotIn("http://pvp.invalid", gateways(g.build_v1(c)))
+
+    def test_name_fallback_multi_lane(self):
+        c = fixture()
+        server = extra_server("classic-2", "http://c2a.invalid")
+        server["name"] = {"th": "Classic 2"}
+        server["lanes"] = [
+            {"id": "main", "name": {"th": "เลนปกติ"}, "gateway": "http://c2a.invalid", "access": "all"},
+            {"id": "test", "name": {"th": "เลนทดสอบ"}, "gateway": "http://c2b.invalid", "access": "supporter"},
+        ]
+        c["servers"].append(server)
+        names = {row["gateway"]: row["name"] for row in g.build_v2(c)["servers"]}
+        self.assertEqual(names["http://c2a.invalid"], "Classic 2 · เลนปกติ")
+        self.assertEqual(names["http://c2b.invalid"], "Classic 2 · เลนทดสอบ")
+
+    def test_name_fallback_single_lane(self):
+        c = fixture()
+        names = {row["gateway"]: row["name"] for row in g.build_v2(c)["servers"]}
+        self.assertEqual(names["https://example.invalid/gw"], "Durango Classic")
+
+    def test_missing_lane_name_fallback_errors(self):
+        c = fixture()
+        del c["servers"][0]["lanes"][1]["name"]
+        for build in (g.build_v2, g.build_v1):
+            with self.assertRaises(g.CatalogError) as cm:
+                build(c)
+            self.assertIn("renewal", str(cm.exception))
+            self.assertIn("supporter", str(cm.exception))
+
+    def test_order_then_file_order(self):
+        c = fixture()
+        c["servers"] = [
+            extra_server("late", "http://late.invalid", order=5),
+            extra_server("tie-a", "http://tie-a.invalid", order=3),
+            extra_server("first", "http://first.invalid", order=1),
+            extra_server("tie-b", "http://tie-b.invalid", order=3),
+        ]
+        self.assertEqual(
+            gateways(g.build_v2(c)),
+            ["http://first.invalid", "http://tie-a.invalid", "http://tie-b.invalid", "http://late.invalid"],
+        )
+
+    def test_v1_has_no_mode_and_only_renewal(self):
+        c = fixture()
+        v1 = g.build_v1(c)
+        for row in v1["servers"]:
+            self.assertNotIn("mode", row)
+        self.assertNotIn("https://example.invalid/gw", gateways(v1))
+        self.assertEqual(gateways(v1), ["http://127.0.0.1:8290", "http://127.0.0.1:8292"])
+
+
 if __name__ == "__main__":
     unittest.main()

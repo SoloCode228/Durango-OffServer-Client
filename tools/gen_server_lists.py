@@ -78,3 +78,69 @@ def load_catalog(path: str) -> dict:
             raise CatalogError(f"{path}: not valid JSON: {e}") from e
     validate(catalog)
     return catalog
+
+
+def _playable(catalog: dict) -> list[dict]:
+    """Servers that old lists carry: status open and known rules, by order (S1).
+
+    sorted() is stable, so servers with the same order keep file order.
+    """
+    servers = [
+        s for s in catalog["servers"]
+        if s.get("status") == "open" and s.get("rules") in KNOWN_RULES
+    ]
+    for s in servers:
+        order = s.get("order")
+        if type(order) is not int:
+            raise CatalogError(f"server {s['id']!r}: order must be an int, got {order!r}")
+    return sorted(servers, key=lambda s: s["order"])
+
+
+def _row_name(server: dict, lane: dict) -> str:
+    """S2: legacy_name, else "<name.th> · <lane.name.th>" with many lanes, else name.th."""
+    legacy = lane.get("legacy_name")
+    if isinstance(legacy, str) and legacy:
+        return legacy
+    if len(server["lanes"]) == 1:
+        return server["name"]["th"]
+    lane_name = lane.get("name")
+    if not isinstance(lane_name, dict) or not isinstance(lane_name.get("th"), str) or not lane_name["th"]:
+        raise CatalogError(
+            f"server {server['id']!r} lane {lane['id']!r} needs name.th or legacy_name "
+            "(the server has more than one lane)"
+        )
+    return f"{server['name']['th']} · {lane_name['th']}"
+
+
+def _rows(catalog: dict, with_mode: bool, rules: tuple[str, ...]) -> dict:
+    rows = []
+    for server in _playable(catalog):
+        if server["rules"] not in rules:
+            continue
+        for lane in server["lanes"]:
+            gateway = lane.get("gateway")
+            if not isinstance(gateway, str) or not gateway:
+                raise CatalogError(f"server {server['id']!r} lane {lane['id']!r} needs a gateway")
+            row = {"name": _row_name(server, lane), "gateway": gateway}
+            if with_mode:
+                row["mode"] = server["rules"]
+            rows.append(row)
+    return {"servers": rows}
+
+
+def build_v2(catalog: dict) -> dict:
+    """servers-v2.json (S2): every open classic/renewal lane, with mode."""
+    return _rows(catalog, with_mode=True, rules=KNOWN_RULES)
+
+
+def build_v1(catalog: dict) -> dict:
+    """servers.json (S2): open renewal lanes only, without mode."""
+    return _rows(catalog, with_mode=False, rules=("renewal",))
+
+
+def dump(obj: dict) -> str:
+    """File text of S2: indent 2, non-ASCII kept, LF, newline at the end.
+
+    Write it with newline="" (or as UTF-8 bytes) so Windows keeps LF.
+    """
+    return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
