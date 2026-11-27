@@ -1,0 +1,233 @@
+{
+  "schema": 3,
+  "id_service": {
+    "api": "https://admin.dorangu.tech/id/api/game",
+    "server": "CloseBeta",
+    "web": "https://play.dorangu.tech/id"
+  },
+  "servers": [
+    {
+      "id": "renewal",
+      "order": 10,
+      "rules": "renewal",
+      "name": {
+        "th": "Durango Renewal",
+        "en": "Durango Renewal"
+      },
+      "tagline": {
+        "th": "ระบบเสริมของ Renewal · ตัวละครและเกาะเดิมจาก OBT",
+        "en": "Renewal extras · your OBT characters and islands"
+      },
+      "status": "open",
+      "links": {
+        "site": "https://play.dorangu.tech",
+        "play_web": "https://play.dorangu.tech/id/play"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://168.222.21.53:8290",
+          "access": "all",
+          "legacy_name": "[5BD68A][OBT][-] [F5C518]Dorangu:Renewal[-]"
+        },
+        {
+          "id": "supporter",
+          "name": {
+            "th": "เลน Supporter",
+            "en": "Supporter"
+          },
+          "gateway": "http://168.222.21.53:8292",
+          "access": "supporter",
+          "legacy_name": "[5BD68A][OBT][-] [B8A4FF]Supporter[-]"
+        }
+      ]
+    },
+    {
+      "id": "classic",
+      "order": 20,
+      "rules": "classic",
+      "name": {
+        "th": "Durango Classic",
+        "en": "Durango Classic"
+      },
+      "tagline": {
+        "th": "เกมต้นฉบับแบบปี 2019 เริ่มใหม่ทุกคน",
+        "en": "The original 2019 game, everyone starts fresh"
+      },
+      "status": "open",
+      "opens_at": "2026-11-25T00:00:00+07:00",
+      "links": {
+        "site": "https://classic.solocode.co",
+        "play_web": "https://classic.solocode.co/play"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "https://play-classic.solocode.co/gw",
+          "access": "all",
+          "legacy_name": "[7FC8FF]Durango Classic[-]"
+        }
+      ]
+    },
+    {
+      "id": "ex-classic-open",
+      "order": 30,
+      "rules": "classic",
+      "name": {
+        "th": "คลาสสิกตัวอย่าง เปิด",
+        "en": "Sample Classic Open"
+      },
+      "tagline": {
+        "th": "เซิฟตัวอย่าง กฎ Classic",
+        "en": "Example server, Classic rules"
+      },
+      "status": "open",
+      "links": {
+        "site": "https://example.invalid",
+        "play_web": "https://example.invalid/play"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-classic-open.invalid:8290",
+          "access": "all"
+        }
+      ]
+    },
+    {
+      "id": "ex-renewal-open",
+      "order": 40,
+      "rules": "renewal",
+      "name": {
+        "th": "เรนิวัลตัวอย่าง เปิด",
+        "en": "Sample Renewal Open"
+      },
+      "status": "open",
+      "links": {
+        "site": "https://example.invalid"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-renewal-open.invalid:8290",
+          "access": "all"
+        }
+      ]
+    },
+    {
+      "id": "ex-classic-soon",
+      "order": 50,
+      "rules": "classic",
+      "name": {
+        "th": "คลาสสิกตัวอย่าง เร็ว ๆ นี้",
+        "en": "Sample Classic Soon"
+      },
+      "status": "soon",
+      "opens_at": "2026-12-20T19:00:00+07:00",
+      "links": {
+        "site": "https://example.invalid"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-classic-soon.invalid:8290",
+          "access": "all"
+        }
+      ]
+    },
+    {
+      "id": "ex-renewal-soon",
+      "order": 60,
+      "rules": "renewal",
+      "name": {
+        "th": "เรนิวัลตัวอย่าง เร็ว ๆ นี้",
+        "en": "Sample Renewal Soon"
+      },
+      "status": "soon",
+      "links": {},
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-renewal-soon.invalid:8290",
+          "access": "all"
+        }
+      ]
+    },
+    {
+      "id": "ex-classic-maint",
+      "order": 70,
+      "rules": "classic",
+      "name": {
+        "th": "คลาสสิกตัวอย่าง ปิดปรับปรุง",
+        "en": "Sample Classic Maintenance"
+      },
+      "status": "maintenance",
+      "links": {
+        "site": "https://example.invalid"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-classic-maint.invalid:8290",
+          "access": "all"
+        }
+      ]
+    },
+    {
+      "id": "ex-pvp",
+      "order": 80,
+      "rules": "pvp",
+      "name": {
+        "th": "ตัวอย่างกฎอื่น",
+        "en": "Sample Other Rules"
+      },
+      "tagline": {
+        "th": "กฎที่เว็บไม่รู้จัก ไม่มีปุ่มเล่น",
+        "en": "Unknown rules, no play button"
+      },
+      "status": "open",
+      "links": {
+        "site": "https://example.invalid"
+      },
+      "lanes": [
+        {
+          "id": "main",
+          "name": {
+            "th": "เลนปกติ",
+            "en": "Main"
+          },
+          "gateway": "http://ex-pvp.invalid:8290",
+          "access": "all"
+        }
+      ]
+    }
+  ]
+}
