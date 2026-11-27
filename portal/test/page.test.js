@@ -40,3 +40,15 @@ test("index.html loads catalog.js before app.js", () => {
     assert.equal(body.trim(), "", "no inline script code");
   }
 });
+
+test("filter bar is a labelled group; only the message boxes are live", () => {
+  const html = read("index.html");
+  const bar = html.match(/<div\b[^>]*\bid="bar"[^>]*>/);
+  assert.ok(bar, "#bar exists");
+  assert.match(bar[0], /\brole="group"/);
+  assert.match(bar[0], /\baria-label="ตัวกรอง"/);
+  const list = html.match(/<div\b[^>]*\bid="list"[^>]*>/);
+  assert.ok(list, "#list exists");
+  assert.doesNotMatch(list[0], /aria-live/, "the whole list must not be a live region");
+  assert.match(html, /<div class="msg" role="status">กำลังโหลดรายชื่อเซิร์ฟ…<\/div>/);
+});

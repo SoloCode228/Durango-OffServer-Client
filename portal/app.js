@@ -7,6 +7,9 @@
   var C = window.DurangoCatalog;
   var RAW_BASE = "https://raw.githubusercontent.com/SoloCode228/Durango-OffServer-Client/main/";
   var CATALOG_TIMEOUT_MS = 8000;
+  /* raw GitHub is tried first with a shorter wait, so a hanging GitHub does not hold the page while the
+     same-origin copy is one request away. The last (or only) url keeps the full CATALOG_TIMEOUT_MS. */
+  var FIRST_CATALOG_TIMEOUT_MS = 3500;
   var STATUS_TIMEOUT_MS = 4000;
   var CHIPS = [
     { filter: "all", label: "ทั้งหมด" },
@@ -25,6 +28,7 @@
     loadId: 0
   };
   var statusEls = {};    /* server id -> [label span] currently on the page */
+  var discordEls = [];   /* «ดูประกาศใน Discord» links currently on the page */
 
   function $(id) { return document.getElementById(id); }
 
@@ -71,7 +75,8 @@
       setDownload("dl-and", j && j.launcher);
       state.discord = C.discordUrl(j);
       $("nav-news").setAttribute("href", state.discord);
-      if (state.catalog) drawList();
+      /* Update the drawn links in place: a redraw would drop keyboard focus. */
+      discordEls.forEach(function (a) { a.setAttribute("href", state.discord); });
     });
   }
 
@@ -81,6 +86,7 @@
     var list = $("list");
     clear(list);
     var box = el("div", "msg", text);
+    box.setAttribute("role", "status");
     if (withRetry) {
       box.appendChild(document.createElement("br"));
       var retry = el("button", "btn y", "ลองใหม่");
@@ -103,7 +109,8 @@
         showMessage("โหลดรายชื่อเซิร์ฟไม่ได้", true);
         return;
       }
-      getJson(urls[i++], CATALOG_TIMEOUT_MS, "no-cache").then(function (j) {
+      var timeout = i === 0 && urls.length > 1 ? FIRST_CATALOG_TIMEOUT_MS : CATALOG_TIMEOUT_MS;
+      getJson(urls[i++], timeout, "no-cache").then(function (j) {
         if (myLoad !== state.loadId) return;
         var catalog = j === null ? null : C.parseCatalog(j);
         if (catalog === null) { next(); return; }
@@ -176,10 +183,13 @@
     var list = $("list");
     clear(list);
     statusEls = {};
+    discordEls = [];
     var all = state.catalog.servers;
     var shown = C.filterServers(all, { filter: state.filter, query: state.query });
     if (shown.length === 0) {
-      list.appendChild(el("div", "msg", "ไม่พบเซิร์ฟที่ตรงกับตัวกรอง"));
+      var none = el("div", "msg", "ไม่พบเซิร์ฟที่ตรงกับตัวกรอง");
+      none.setAttribute("role", "status");
+      list.appendChild(none);
       return;
     }
     list.appendChild(state.layout === "table" ? drawTable(shown) : drawCards(shown));
@@ -204,20 +214,23 @@
     return pill;
   }
 
-  function actionBox(server) {
+  /* inTable: the status column already shows the open date, so the action cell does not repeat it. */
+  function actionBox(server, inTable) {
     var box = el("div", "act");
     var action = C.actionFor(server);
     if (action.kind === "play") {
       var play = el("button", "go", "เล่น →");
       play.type = "button";
+      play.setAttribute("aria-label", "เล่น " + server.name.th);
       play.addEventListener("click", function () { openPlay(server, action); });
       box.appendChild(play);
     } else if (action.kind === "soon") {
-      if (action.opensText !== null) box.appendChild(el("span", "soon-at", C.statusLabel(server)));
+      if (action.opensText !== null && !inTable) box.appendChild(el("span", "soon-at", C.statusLabel(server)));
       var news = el("a", null, "ดูประกาศใน Discord");
       news.setAttribute("href", state.discord);
       news.setAttribute("target", "_blank");
       news.setAttribute("rel", "noopener");
+      discordEls.push(news);
       box.appendChild(news);
     } else if (action.kind === "maintenance") {
       var off = el("button", "go", "ปิดปรับปรุง");
@@ -274,7 +287,7 @@
         var status = el("span");
         status.appendChild(statusPill(s));
         row.appendChild(status);
-        row.appendChild(actionBox(s));
+        row.appendChild(actionBox(s, true));
         table.appendChild(row);
       });
     });
