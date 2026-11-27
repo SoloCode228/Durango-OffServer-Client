@@ -1,0 +1,7 @@
+#!/bin/sh
+# Refuse a commit when servers-v2.json or servers.json do not match
+# servers-v3.json (or servers-v3.json is invalid).
+# Turn on once per clone:  git config core.hooksPath tools/hooks
+PY=python
+command -v python >/dev/null 2>&1 || PY=python3
+exec "$PY" tools/gen_server_lists.py --check
