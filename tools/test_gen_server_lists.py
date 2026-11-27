@@ -17,6 +17,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gen_server_lists as g  # noqa: E402
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TESTDATA = os.path.join(REPO_ROOT, "tools", "testdata")
+# servers-v3.json as of this branch, frozen: it must generate the cd8152b
+# servers-v2.json / servers.json byte for byte. Tests that need known content
+# read this copy, so a real edit of servers-v3.json never breaks them.
+FROZEN_V3 = os.path.join(TESTDATA, "servers-v3.cd8152b.json")
 
 # A small valid v3 catalog (rules of S1) that each test mutates.
 FIXTURE = {
@@ -52,8 +57,8 @@ def fixture():
 
 
 class ValidateTests(unittest.TestCase):
-    def test_valid_catalog_loads(self):
-        c = g.load_catalog(os.path.join(REPO_ROOT, "servers-v3.json"))
+    def test_frozen_catalog_loads(self):
+        c = g.load_catalog(FROZEN_V3)
         self.assertEqual(len(c["servers"]), 2)
 
     def test_schema_must_be_3(self):
@@ -126,7 +131,7 @@ class ValidateTests(unittest.TestCase):
 
 
 def read_testdata(name):
-    with open(os.path.join(REPO_ROOT, "tools", "testdata", name), encoding="utf-8", newline="") as f:
+    with open(os.path.join(TESTDATA, name), encoding="utf-8", newline="") as f:
         return f.read()
 
 
@@ -147,11 +152,11 @@ def extra_server(sid, gateway, order=30, rules="classic", status="open"):
 
 class BuildTests(unittest.TestCase):
     def test_v2_matches_main_bytes(self):
-        c = g.load_catalog(os.path.join(REPO_ROOT, "servers-v3.json"))
+        c = g.load_catalog(FROZEN_V3)
         self.assertEqual(g.dump(g.build_v2(c)), read_testdata("servers-v2.cd8152b.json"))
 
     def test_v1_matches_main_bytes(self):
-        c = g.load_catalog(os.path.join(REPO_ROOT, "servers-v3.json"))
+        c = g.load_catalog(FROZEN_V3)
         self.assertEqual(g.dump(g.build_v1(c)), read_testdata("servers.cd8152b.json"))
 
     def test_non_open_servers_excluded(self):
@@ -243,7 +248,7 @@ class MainTests(unittest.TestCase):
         return os.path.join(self.root, name)
 
     def copy_v3(self):
-        shutil.copy(os.path.join(REPO_ROOT, "servers-v3.json"), self.path("servers-v3.json"))
+        shutil.copy(FROZEN_V3, self.path("servers-v3.json"))
 
     def assert_nothing_written(self):
         self.assertFalse(os.path.exists(self.path("servers-v2.json")))
@@ -277,7 +282,7 @@ class MainTests(unittest.TestCase):
         self.assertNotIn("servers.json ", err)
 
     def test_invalid_catalog_writes_nothing(self):
-        c = json.loads(read_bytes(os.path.join(REPO_ROOT, "servers-v3.json")).decode("utf-8"))
+        c = json.loads(read_bytes(FROZEN_V3).decode("utf-8"))
         c["servers"][1]["id"] = c["servers"][0]["id"]
         with open(self.path("servers-v3.json"), "w", encoding="utf-8", newline="") as f:
             json.dump(c, f, ensure_ascii=False)
@@ -287,7 +292,7 @@ class MainTests(unittest.TestCase):
         self.assert_nothing_written()
 
     def test_unknown_rules_prints_warning(self):
-        c = json.loads(read_bytes(os.path.join(REPO_ROOT, "servers-v3.json")).decode("utf-8"))
+        c = json.loads(read_bytes(FROZEN_V3).decode("utf-8"))
         c["servers"].append(extra_server("pvp", "http://pvp.invalid", rules="pvp"))
         with open(self.path("servers-v3.json"), "w", encoding="utf-8", newline="") as f:
             json.dump(c, f, ensure_ascii=False)
